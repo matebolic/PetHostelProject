@@ -1,5 +1,7 @@
 package com.example.PetHostel.model;
 
+import com.example.PetHostel.modelFromEnum.Membership;
+
 import java.time.LocalDate;
 import java.util.List;
 

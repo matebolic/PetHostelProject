@@ -1,11 +1,18 @@
 package com.example.PetHostel.model;
 
+import com.example.PetHostel.modelFromEnum.Gender;
+import com.example.PetHostel.modelFromEnum.PetCharacter;
+import jakarta.persistence.*;
+
+@Entity
 public abstract class Animal {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private PetOwner owner;
+
+    private PetOwner petOwner;
     private String petName;
-    private AnimalType animalType;
     private Integer age;
     private Gender gender;
     private Boolean isNeutered;
@@ -14,9 +21,5 @@ public abstract class Animal {
 
     //picture URL from a web API
     private String pictureURL;
-
-
-
-
 
 }
