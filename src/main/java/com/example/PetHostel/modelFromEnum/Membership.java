@@ -1,6 +1,7 @@
 package com.example.PetHostel.modelFromEnum;
 
 public enum Membership {
+    NONE(0,0.0,0),
     BASIC(1, 5.0, 5),
     STANDARD(2, 10.0, 10),
     PREMIUM(3, 20.0,20);

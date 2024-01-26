@@ -4,6 +4,10 @@ import com.example.PetHostel.modelFromEnum.Gender;
 import com.example.PetHostel.modelFromEnum.PetCharacter;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
 @Entity
 public class Animal {
 
@@ -153,6 +157,44 @@ public class Animal {
 
     public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
+    }
+
+    //randomData
+
+    public Animal randomDetailedInfo() {
+        this.setOwnerId(randomizeOwnerId());
+        this.setPetName(randomizePetName());
+        this.setAge(randomizeAge());
+        this.setGender(randomizeGender());
+        this.setNeutered(randomizeNeutered());
+        this.setPetCharacter(randomizePetCharacter());
+        return this;
+    }
+
+    public Long randomizeOwnerId() {
+        return 1L;
+    }       //from the available ID-s! request!!!!!!!!
+
+    public String randomizePetName() {
+        List<String> randomNameSyllables = List.of("mi", "ma", "ci", "ca", "cat", "sy", "cir", "mir", "mir", "kor", "mir");
+        String syllable = randomNameSyllables.get(ThreadLocalRandom.current().nextInt(0, randomNameSyllables.size())).repeat(2);
+        return this.petName = syllable + syllable;
+    }
+
+    public Integer randomizeAge() {
+        return ThreadLocalRandom.current().nextInt(1, 21);
+    }
+
+    public Gender randomizeGender() {
+        return Gender.values()[ThreadLocalRandom.current().nextInt(0, 2)];
+    }
+
+    public Boolean randomizeNeutered() {
+        return ThreadLocalRandom.current().nextInt(0, 2) != 0;
+    }
+
+    public PetCharacter randomizePetCharacter() {
+        return PetCharacter.values()[ThreadLocalRandom.current().nextInt(0, PetCharacter.values().length)];
     }
 
     @Override
