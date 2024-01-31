@@ -1,6 +1,7 @@
 package com.example.PetHostel;
 
 import com.example.PetHostel.model.Animal;
+import com.example.PetHostel.model.PetOwner;
 import com.example.PetHostel.modelFromEnum.Gender;
 import com.example.PetHostel.modelFromEnum.PetCharacter;
 import com.example.PetHostel.repository.AnimalRepository;
@@ -24,9 +25,10 @@ public class PetHostelApplication {
     @Bean
     public CommandLineRunner runner() {
         return args -> {
-            System.out.println("Welcome in PetHostel terminal! Ready to work. ");
+            System.out.println("Welcome in PetHostel terminal! Ready to work.");
             for (int i = 0; i < 10; i++) {
                 animalRepository.save(new Animal().randomDetailedInfo());
+
             };
 //            animalRepository.save(new Animal.AnimalBuilder(5L, "Micike").addDetailedInfo(5, Gender.FEMALE, true, PetCharacter.NORMAL).build());
 //            animalRepository.save(new Animal.AnimalBuilder(4L, "Kormi").addDetailedInfo(1, Gender.MALE, false, PetCharacter.KIND).addOptionalInfo("Likes very much his games", null).build());

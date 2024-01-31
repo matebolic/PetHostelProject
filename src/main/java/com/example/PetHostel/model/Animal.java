@@ -3,22 +3,32 @@ package com.example.PetHostel.model;
 import com.example.PetHostel.modelFromEnum.Gender;
 import com.example.PetHostel.modelFromEnum.PetCharacter;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 @Entity
 public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //BasicInfo
     private Long id;
     private Long ownerId;
     @Column(nullable = false)
     private String petName;
 
-    //Detailed info
+    //DetailedInfo
     private Integer age;
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -29,10 +39,6 @@ public class Animal {
     //OptionalInfo
     private String specialNeeds;
     private String pictureURL;      //picture URL from a web API
-
-
-    public Animal() {
-    }
 
     public Animal(Long ownerId, String petName, Integer age, Gender gender, Boolean isNeutered, PetCharacter petCharacter) {
         this.ownerId = ownerId;
@@ -86,79 +92,6 @@ public class Animal {
         }
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getPetName() {
-        return petName;
-    }
-
-    public void setPetName(String petName) {
-        this.petName = petName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public Boolean getNeutered() {
-        return isNeutered;
-    }
-
-    public void setNeutered(Boolean neutered) {
-        isNeutered = neutered;
-    }
-
-    public PetCharacter getPetCharacter() {
-        return petCharacter;
-    }
-
-    public void setPetCharacter(PetCharacter petCharacter) {
-        this.petCharacter = petCharacter;
-    }
-
-    public String getSpecialNeeds() {
-        return specialNeeds;
-    }
-
-    public void setSpecialNeeds(String specialNeeds) {
-        this.specialNeeds = specialNeeds;
-    }
-
-    public String getPictureURL() {
-        return pictureURL;
-    }
-
-    public void setPictureURL(String pictureURL) {
-        this.pictureURL = pictureURL;
-    }
-
     //randomData
 
     public Animal randomDetailedInfo() {
@@ -166,7 +99,7 @@ public class Animal {
         this.setPetName(randomizePetName());
         this.setAge(randomizeAge());
         this.setGender(randomizeGender());
-        this.setNeutered(randomizeNeutered());
+        this.setIsNeutered(randomizeNeutered());
         this.setPetCharacter(randomizePetCharacter());
         return this;
     }
@@ -177,8 +110,8 @@ public class Animal {
 
     public String randomizePetName() {
         List<String> randomNameSyllables = List.of("mi", "ma", "ci", "ca", "cat", "sy", "cir", "mir", "mir", "kor", "mir");
-        String syllable = randomNameSyllables.get(ThreadLocalRandom.current().nextInt(0, randomNameSyllables.size())).repeat(2);
-        return this.petName = syllable + syllable;
+        return this.petName = randomNameSyllables.get(ThreadLocalRandom.current().nextInt(0, randomNameSyllables.size())) +
+                randomNameSyllables.get(ThreadLocalRandom.current().nextInt(0, randomNameSyllables.size()));
     }
 
     public Integer randomizeAge() {
@@ -197,18 +130,4 @@ public class Animal {
         return PetCharacter.values()[ThreadLocalRandom.current().nextInt(0, PetCharacter.values().length)];
     }
 
-    @Override
-    public String toString() {
-        return "Animal{" +
-                "id=" + id +
-                ", ownerId=" + ownerId +
-                ", petName='" + petName + '\'' +
-                ", age=" + age +
-                ", gender=" + gender +
-                ", isNeutered=" + isNeutered +
-                ", petCharacter=" + petCharacter +
-                ", specialNeeds='" + specialNeeds + '\'' +
-                ", pictureURL='" + pictureURL + '\'' +
-                '}';
-    }
 }
