@@ -2,10 +2,15 @@ package com.example.PetHostel.model;
 
 import com.example.PetHostel.modelFromEnum.Membership;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 @Entity
 public class PetOwner {
 
@@ -21,14 +26,14 @@ public class PetOwner {
     @Enumerated(EnumType.STRING)
     private Membership membership;
 
-    public PetOwner() {
-    }
+    @Transient
+    private List<Animal> petList;
+    @Transient
+    private List<Reservation> reservationList;
 
-     /* private List<Reservation> reservations;
-    private Long accountBalance;
-    private Double actualLocationX;
-    private Double actualLocationY;
-    private List<Animal> petList;*/
+//    private Long accountBalance;
+//    private Double actualLocationX;
+//    private Double actualLocationY;
 
     public PetOwner(String firstName, String lastName, String dateString, Membership membership) {
         this.firstName = firstName;
@@ -37,46 +42,4 @@ public class PetOwner {
         this.membership = membership;
     }
 
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Membership getMembership() {
-        return membership;
-    }
-
-    public void setMembership(Membership membership) {
-        this.membership = membership;
-    }
-
-    @Override
-    public String toString() {
-        return "PetOwner{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
-    }
 }
