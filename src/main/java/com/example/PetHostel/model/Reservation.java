@@ -7,7 +7,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -25,9 +28,12 @@ public class Reservation {
     @Column(nullable = false)
     private LocalDate finishingDate;
 
-    //?Is Enumerated annotation necessary?
     @OneToMany(mappedBy = "reservation")
     private List<PetUtility> utilities;
+
+    @ManyToOne
+    @JoinColumn(name = "animal_id")
+    private Animal animal;
 
     @ManyToOne
     @JoinColumn(name = "pet_owner_id")
@@ -39,11 +45,11 @@ public class Reservation {
     @Transient
     private Integer price;
 
-    public Reservation(LocalDate startingDate, LocalDate finishingDate, List<PetUtility> utilities, Integer periodLength) {
-        this.startingDate = startingDate;
-        this.finishingDate = finishingDate;
-        this.utilities = utilities;
-        this.periodLength = periodLength;
+
+    public Reservation(String startingDateStr, String finishingDateStr, PetOwner petOwner) {
+        this.startingDate = LocalDate.parse(startingDateStr);
+        this.finishingDate = LocalDate.parse(finishingDateStr);
+        this.periodLength = Math.toIntExact(finishingDate.toEpochDay() - startingDate.toEpochDay());
     }
 
 }

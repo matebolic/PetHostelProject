@@ -44,4 +44,11 @@ public class PetOwner {
         this.membership = membership;
     }
 
+    public PetOwner(String firstName, String lastName, String dateString) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = LocalDate.parse(dateString);
+        this.membership = Membership.NONE;
+    }
+
 }

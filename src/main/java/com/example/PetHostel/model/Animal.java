@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -34,6 +37,9 @@ public class Animal {
     private Boolean isNeutered;
     @Enumerated(EnumType.STRING)
     private PetCharacter petCharacter;
+
+    @OneToMany(mappedBy = "animal")
+    private Set<Reservation> reservations;
 
     //OptionalInfo
     private String specialNeeds;
@@ -104,8 +110,8 @@ public class Animal {
     }
 
     public Long randomizeOwnerId() {
-        return 1L;
-    }       //from the available ID-s! request!!!!!!!!
+        return ThreadLocalRandom.current().nextLong(1, 4);
+    }
 
     public String randomizePetName() {
         List<String> randomNameSyllables = List.of("mi", "ma", "ci", "ca", "cat", "sy", "cir", "mir", "mir", "kor", "mir");
