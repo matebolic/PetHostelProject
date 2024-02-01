@@ -1,6 +1,9 @@
 package com.example.PetHostel.modelFromEnum;
 
-public enum PetService {
+import lombok.Getter;
+
+@Getter
+public enum UtilityOptions {
 
     WASH("wash", 1990),
     WALK("walk", 490),
@@ -9,7 +12,7 @@ public enum PetService {
     private String serviceName;
     private Integer priceOfService;
 
-    PetService(String serviceName, Integer priceOfService) {
+    UtilityOptions(String serviceName, Integer priceOfService) {
         this.serviceName = serviceName;
         this.priceOfService = priceOfService;
     }

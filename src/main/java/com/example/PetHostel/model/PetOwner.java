@@ -26,10 +26,12 @@ public class PetOwner {
     @Enumerated(EnumType.STRING)
     private Membership membership;
 
+    @OneToMany(mappedBy = "petOwner")
+    private List<Reservation> reservations;
+
     @Transient
     private List<Animal> petList;
-    @Transient
-    private List<Reservation> reservationList;
+
 
 //    private Long accountBalance;
 //    private Double actualLocationX;
