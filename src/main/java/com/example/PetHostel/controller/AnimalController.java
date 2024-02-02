@@ -4,6 +4,7 @@ import com.example.PetHostel.model.Animal;
 import com.example.PetHostel.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -58,6 +59,46 @@ public class AnimalController {
     public List<Animal> findByDates(@PathVariable String localDateStr) {
         return animalService.findByDates(LocalDate.parse(localDateStr));
     }
+
+    @GetMapping("/averageAge")
+    public String getAvgAgeOfAnimal() {
+        return animalService.getAvgAgeOfAnimal();
+    }
+
+    @GetMapping("/youngest-actual")
+    public Animal getActualYoungest() {
+        return animalService.getActualYoungest();
+    }
+    @GetMapping("/oldest-actual")
+    public Animal getActualOldest() {
+        return animalService.getActualOldest();
+    }
+
+
+    //-------------------------------------------------------------------------------//
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Animal update(@RequestBody Animal animal) {
+        return animalService.save(animal);
+    }
+
+
+    //Searching by Id!
+
+    @PatchMapping("/update/{id}/{name}")
+    public void updateName(@PathVariable String name, @PathVariable Long id) {
+        animalService.updateName(name, id);
+    }
+
+    //??????????????????????????????????
+    //update age
+    //update gender
+    //update isNeutered;
+    //update petCharacter;
+    //update pic
+    //update specialneeds
+
 
     //-------------------------------------------------------------------------------//
 

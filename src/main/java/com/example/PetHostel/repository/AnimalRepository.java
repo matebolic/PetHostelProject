@@ -37,10 +37,14 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     List<Animal> findByDates(@Param("searchedDate") LocalDate localDate);
     //ON a.id = r.animal_id was taken out
 
-
+//alternative to the method below
 //    @Modifying
-//    @Query("DELETE FROM Animal a WHERE a.id = :idAnimal")
-//    void deleteByAnimalId(@Param("idAnimal") Long id);
+//    @Query("UPDATE Animal a SET a.name = :nameAnimal WHERE a.id = :idAnimal")
+//    void updateName(@Param("nameAnimal") String name, @Param("idAnimal") Long id);
+
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE Animal a SET a.name = ?1 WHERE a.id = ?2")
+    void updateName(String name, Long id);
 
 
 }

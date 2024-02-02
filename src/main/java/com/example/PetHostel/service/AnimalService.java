@@ -4,10 +4,15 @@ import com.example.PetHostel.model.Animal;
 import com.example.PetHostel.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,6 +25,8 @@ public class AnimalService {
     public Animal save(Animal animal) {
         return animalRepository.save(animal);
     }
+
+    //-------------------------------------------------------------------------------//
 
     public List<Animal> findAll() {
         return animalRepository.findAll();
@@ -51,10 +58,41 @@ public class AnimalService {
         return animalRepository.findByDates(localDate);
     }
 
-    public void deleteById(Long id) {
-        animalRepository.deleteById(id);
+    public String getAvgAgeOfAnimal() {
+        return animalRepository.findAll().stream().map(animal -> animal.getAge()).mapToInt(a -> a).summaryStatistics().toString();
+    }
+
+    public Animal getActualYoungest() {
+        return animalRepository.findAll().stream()
+                .sorted(Comparator.comparing(a -> a.getAge()))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    public Animal getActualOldest() {
+        return animalRepository.findAll().stream()
+                .sorted(new Comparator<Animal>() {
+                    @Override
+                    public int compare(Animal a1, Animal a2) {
+                        return a1.getAge() > a2.getAge() ? -1 : 1;
+                    }
+                })
+                .findFirst()
+                .orElseThrow();
+    }
+
+    //-------------------------------------------------------------------------------//
+
+    public void updateName(String name, Long id) {
+        animalRepository.updateName(name, id);
     }
 
 
+    //-------------------------------------------------------------------------------//
+
+    public void deleteById(Long id) {
+        animalRepository.deleteById(id);
+
+    }
 
 }

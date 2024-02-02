@@ -38,7 +38,6 @@ public class Animal {
     private PetCharacter petCharacter;
 
 
-
     @OneToMany(mappedBy = "animal")
     @JsonIgnore
     private Set<Reservation> reservationOfAnimal;
