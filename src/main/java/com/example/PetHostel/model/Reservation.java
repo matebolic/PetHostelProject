@@ -52,4 +52,13 @@ public class Reservation {
         this.periodLength = Math.toIntExact(finishingDate.toEpochDay() - startingDate.toEpochDay());
     }
 
+    public Reservation(String startingDateStr, String finishingDateStr, PetOwner petOwner, Animal animal) {
+        this.startingDate = LocalDate.parse(startingDateStr);
+        this.finishingDate = LocalDate.parse(finishingDateStr);
+        this.periodLength = Math.toIntExact(finishingDate.toEpochDay() - startingDate.toEpochDay());
+        this.animal = animal;
+    }
+
+
+
 }

@@ -2,14 +2,13 @@ package com.example.PetHostel.model;
 
 import com.example.PetHostel.modelFromEnum.Gender;
 import com.example.PetHostel.modelFromEnum.PetCharacter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -38,8 +37,11 @@ public class Animal {
     @Enumerated(EnumType.STRING)
     private PetCharacter petCharacter;
 
+
+
     @OneToMany(mappedBy = "animal")
-    private Set<Reservation> reservations;
+    @JsonIgnore
+    private Set<Reservation> reservationOfAnimal;
 
     //OptionalInfo
     private String specialNeeds;
@@ -64,9 +66,10 @@ public class Animal {
         private String specialNeeds;
         private String pictureURL;
 
-        public AnimalBuilder(Long ownerId, String petName) {
+        public AnimalBuilder addBasicInfo(Long ownerId, String petName) {
             this.ownerId = ownerId;
             this.petName = petName;
+            return this;
         }
 
         public AnimalBuilder addDetailedInfo(Integer age, Gender gender, Boolean isNeutered, PetCharacter petCharacter) {

@@ -3,7 +3,9 @@ package com.example.PetHostel;
 import com.example.PetHostel.model.Animal;
 import com.example.PetHostel.model.PetOwner;
 import com.example.PetHostel.model.Reservation;
+import com.example.PetHostel.modelFromEnum.Gender;
 import com.example.PetHostel.modelFromEnum.Membership;
+import com.example.PetHostel.modelFromEnum.PetCharacter;
 import com.example.PetHostel.repository.AnimalRepository;
 import com.example.PetHostel.repository.PetOwnerRepository;
 import com.example.PetHostel.repository.ReservationRepository;
@@ -32,6 +34,11 @@ public class PetHostelApplication {
     public CommandLineRunner runner() {
         return args -> {
             System.out.println("Welcome in PetHostel terminal! Ready to work.");
+
+            Animal cirmir = new Animal.AnimalBuilder().addBasicInfo(1L, "Cirmir").addDetailedInfo(1, Gender.MALE, false, PetCharacter.KIND).build();
+            animalRepository.save(cirmir);
+
+            animalRepository.save(new Animal.AnimalBuilder().addBasicInfo(5L, "Micike").addDetailedInfo(5, Gender.FEMALE, true, PetCharacter.NORMAL).build());
             for (int i = 0; i < 10; i++) {
                 animalRepository.save(new Animal().randomDetailedInfo());
             }
@@ -40,12 +47,10 @@ public class PetHostelApplication {
             PetOwner petOwner_mtb = new PetOwner("Barbara", "Máté-Turuczkai", "1991-08-27");
             petOwnerRepository.save(petOwner_mb);
             petOwnerRepository.save(petOwner_mtb);
-            reservationRepository.save(new Reservation("2024-01-22", "2024-01-25", petOwner_mb));
+            reservationRepository.save(new Reservation("2024-01-22", "2024-02-03", petOwner_mb, cirmir));
 
+            System.out.println("Succesfully finished with CommandLineRunner.");
 
-                    System.out.println("Succesfully finished with CommandLineRunner.");
-            //            animalRepository.save(new Animal.AnimalBuilder(5L, "Micike").addDetailedInfo(5, Gender.FEMALE, true, PetCharacter.NORMAL).build());
-//            animalRepository.save(new Animal.AnimalBuilder(4L, "Kormi").addDetailedInfo(1, Gender.MALE, false, PetCharacter.KIND).addOptionalInfo("Likes very much his games", null).build());
         };
     }
 

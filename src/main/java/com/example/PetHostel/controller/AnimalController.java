@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -20,6 +21,8 @@ public class AnimalController {
     public Animal save(@RequestBody Animal animal) {
         return animalService.save(animal);
     }
+
+    //-------------------------------------------------------------------------------//
 
     @GetMapping("/findAll")
     public List<Animal> findAll() {
@@ -41,7 +44,27 @@ public class AnimalController {
         return animalService.findByTheOwnersFullName(fullName);
     }
 
-    //find by reservation's date -list
-    //find by petName -list
+    @GetMapping("/findByPetName/{petName}")
+    public List<Animal> findByPetName(@PathVariable String petName) {
+        return animalService.findByPetName(petName);
+    }
+
+    @GetMapping("/findNow")
+    public List<Animal> findNow() {
+        return animalService.findNow();
+    }
+
+    @GetMapping("/findByDates/{localDateStr}")
+    public List<Animal> findByDates(@PathVariable String localDateStr) {
+        return animalService.findByDates(LocalDate.parse(localDateStr));
+    }
+
+    //-------------------------------------------------------------------------------//
+
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteById(@PathVariable Long id) {
+        animalService.deleteById(id);
+    }
+
 
 }

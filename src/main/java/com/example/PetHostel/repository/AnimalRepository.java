@@ -2,9 +2,12 @@ package com.example.PetHostel.repository;
 
 import com.example.PetHostel.model.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
@@ -19,10 +22,25 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     @Query("SELECT a FROM Animal a JOIN PetOwner o ON a.ownerId = o.id WHERE CONCAT(o.lastName, ' ', o.firstName) = :fullName")
     List<Animal> findByTheOwnersFullName(@Param("fullName") String fullName);
 
+    List<Animal> findByPetNameIgnoreCase(String petName);
 
-//find by reservation's date -list
+    @Query(nativeQuery = true, value = """
+            SELECT a.*, r.starting_date, r.finishing_date
+            FROM animal a 
+            INNER JOIN reservation r ON a.id = r.animal_id
+            WHERE now() BETWEEN r.starting_date AND r.finishing_date;
+            """)
+    List<Animal> findNow();
 
-//find by petName -list
+
+    @Query("SELECT a FROM Animal a JOIN a.reservationOfAnimal r WHERE :searchedDate BETWEEN r.startingDate And r.finishingDate")
+    List<Animal> findByDates(@Param("searchedDate") LocalDate localDate);
+    //ON a.id = r.animal_id was taken out
+
+
+//    @Modifying
+//    @Query("DELETE FROM Animal a WHERE a.id = :idAnimal")
+//    void deleteByAnimalId(@Param("idAnimal") Long id);
 
 
 }
