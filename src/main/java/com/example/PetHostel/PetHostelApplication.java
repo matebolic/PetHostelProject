@@ -43,8 +43,8 @@ public class PetHostelApplication {
                 animalRepository.save(new Animal().randomDetailedInfo());
             }
 
-            PetOwner petOwner_mb = new PetOwner("Balázs", "Máté", "1987-10-15", Membership.BASIC);
-            PetOwner petOwner_mtb = new PetOwner("Barbara", "Máté-Turuczkai", "1991-08-27");
+            PetOwner petOwner_mb = new PetOwner("George", "Best", "1981-10-11", Membership.BASIC);
+            PetOwner petOwner_mtb = new PetOwner("Barbara", "Swenson", "1981-06-27");
             petOwnerRepository.save(petOwner_mb);
             petOwnerRepository.save(petOwner_mtb);
             reservationRepository.save(new Reservation("2024-01-22", "2024-02-03", petOwner_mb, cirmir));
