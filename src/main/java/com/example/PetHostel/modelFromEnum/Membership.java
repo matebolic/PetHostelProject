@@ -1,16 +1,22 @@
 package com.example.PetHostel.modelFromEnum;
 
-public enum Membership {
-    NONE(0,0.0,0),
-    BASIC(1, 5.0, 5),
-    STANDARD(2, 10.0, 10),
-    PREMIUM(3, 20.0,20);
+import lombok.Getter;
 
+@Getter
+public enum Membership {
+    NONE("none", 0, 0.0, 0),
+    BASIC("basic", 1, 5.0, 5),
+    STANDARD("standard", 2, 10.0, 10),
+    PREMIUM("premium", 3, 20.0, 20);
+
+    private String nameOfLevel;
     private Integer levelOfMembership;
     private Double percentageOfDiscount;
     private Integer stepsToUpgrade;
 
-    Membership(Integer levelOfMembership, Double percentageOfDiscount, Integer stepsToUpgrade) {
+
+    Membership(String nameOfLevel, Integer levelOfMembership, Double percentageOfDiscount, Integer stepsToUpgrade) {
+        this.nameOfLevel = nameOfLevel;
         this.levelOfMembership = levelOfMembership;
         this.percentageOfDiscount = percentageOfDiscount;
         this.stepsToUpgrade = stepsToUpgrade;

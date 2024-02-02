@@ -37,6 +37,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     List<Animal> findByDates(@Param("searchedDate") LocalDate localDate);
     //ON a.id = r.animal_id was taken out
 
+    //--------------------need to modify-----------------------------------------------------------//
 //alternative to the method below
 //    @Modifying
 //    @Query("UPDATE Animal a SET a.name = :nameAnimal WHERE a.id = :idAnimal")
@@ -46,5 +47,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     @Query(nativeQuery = true, value = "UPDATE Animal a SET a.name = ?1 WHERE a.id = ?2")
     void updateName(String name, Long id);
 
+    //--------------------need to modify-----------------------------------------------------------//
 
 }

@@ -1,6 +1,7 @@
 package com.example.PetHostel.model;
 
 import com.example.PetHostel.modelFromEnum.Membership;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +27,7 @@ public class PetOwner {
     @Enumerated(EnumType.STRING)
     private Membership membership;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "petOwner")
     private List<Reservation> reservations;
 

@@ -1,5 +1,6 @@
 package com.example.PetHostel.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class Reservation {
     @Column(nullable = false)
     private LocalDate finishingDate;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "reservation")
     private List<PetUtility> utilities;
 
