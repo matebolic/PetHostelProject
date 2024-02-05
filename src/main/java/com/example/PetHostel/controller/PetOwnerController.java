@@ -33,6 +33,13 @@ public class PetOwnerController {
         return petOwnerService.findAll();
     }
 
+
+    @GetMapping("/findByFullName/{fullName}")
+    public List<PetOwner> findByFullName(@PathVariable String fullName) {
+        return petOwnerService.findByFullName(fullName);
+    }
+
+
     //findByMembership - public on website
     @GetMapping("/findByMembership/{membershipStr}")
     public List<PetOwner> findByMembership(@PathVariable String membershipStr) {

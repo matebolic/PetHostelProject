@@ -41,8 +41,8 @@ public class AnimalService {
         return animalRepository.findByOwnerId(id);
     }
 
-    public List<Animal> findByTheOwnersFullName(String fullName) {
-        return animalRepository.findByTheOwnersFullName(fullName);
+    public List<Animal> findByTheOwnerFullName(String fullName) {
+        return animalRepository.findByTheOwnerFullName(fullName);
     }
 
     public List<Animal> findByPetName(String petName) {

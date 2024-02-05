@@ -41,8 +41,8 @@ public class AnimalController {
     }
 
     @GetMapping("/findByOwnerFullName/{fullName}")
-    public List<Animal> findByTheOwnersFullName(@PathVariable String fullName) {
-        return animalService.findByTheOwnersFullName(fullName);
+    public List<Animal> findByTheOwnerFullName(@PathVariable String fullName) {
+        return animalService.findByTheOwnerFullName(fullName);
     }
 
     @GetMapping("/findByPetName/{petName}")
@@ -82,9 +82,6 @@ public class AnimalController {
     public Animal update(@RequestBody Animal animal) {
         return animalService.save(animal);
     }
-
-
-    //Searching by Id!
 
     @PatchMapping("/update/{id}/{name}")
     public void updateName(@PathVariable String name, @PathVariable Long id) {

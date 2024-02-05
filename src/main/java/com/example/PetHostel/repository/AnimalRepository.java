@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
+//    @Query("SELECT a FROM Animal a WHERE a.pet_owner_id = :ownerId")
+    @Query(nativeQuery = true, value = "SELECT * FROM animal where pet_owner_id = ?1")
     List<Animal> findByOwnerId(Long id);
 
     //original native psql solution
@@ -19,8 +21,8 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
 //    List<Animal> findByTheOwnersFullName(String fullName);
 
     //JPQL query
-    @Query("SELECT a FROM Animal a JOIN PetOwner o ON a.ownerId = o.id WHERE CONCAT(o.lastName, ' ', o.firstName) = :fullName")
-    List<Animal> findByTheOwnersFullName(@Param("fullName") String fullName);
+    @Query("SELECT a FROM Animal a JOIN PetOwner o WHERE CONCAT(o.lastName, ' ', o.firstName) = :fullName")
+    List<Animal> findByTheOwnerFullName(@Param("fullName") String fullName);
 
     List<Animal> findByPetNameIgnoreCase(String petName);
 

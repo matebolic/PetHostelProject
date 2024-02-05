@@ -25,7 +25,11 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.AUTO)
     //BasicInfo
     private Long id;
-    private Long ownerId;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_owner_id")
+    private PetOwner petOwner;
+
     @Column(nullable = false)
     private String petName;
 
@@ -46,8 +50,16 @@ public class Animal {
     private String specialNeeds;
     private String pictureURL;      //picture URL from a web API
 
-    public Animal(Long ownerId, String petName, Integer age, Gender gender, Boolean isNeutered, PetCharacter petCharacter) {
-        this.ownerId = ownerId;
+    public Animal(PetOwner petOwner, String petName, Integer age, Gender gender, Boolean isNeutered, PetCharacter petCharacter) {
+        this.petOwner= petOwner;
+        this.petName = petName;
+        this.age = age;
+        this.gender = gender;
+        this.isNeutered = isNeutered;
+        this.petCharacter = petCharacter;
+    }
+
+    public Animal(String petName, Integer age, Gender gender, Boolean isNeutered, PetCharacter petCharacter) {
         this.petName = petName;
         this.age = age;
         this.gender = gender;
@@ -56,7 +68,7 @@ public class Animal {
     }
 
     public static class AnimalBuilder {
-        private Long ownerId;
+        private PetOwner petOwner;
         private String petName;
         private Integer age;
         private Gender gender;
@@ -65,8 +77,8 @@ public class Animal {
         private String specialNeeds;
         private String pictureURL;
 
-        public AnimalBuilder addBasicInfo(Long ownerId, String petName) {
-            this.ownerId = ownerId;
+        public AnimalBuilder addBasicInfo(PetOwner petOwner, String petName) {
+            this.petOwner = petOwner;
             this.petName = petName;
             return this;
         }
@@ -87,7 +99,7 @@ public class Animal {
 
         public Animal build() {
             Animal animal = new Animal();
-            animal.ownerId = this.ownerId;
+            animal.petOwner = this.petOwner;
             animal.petName = this.petName;
             animal.age = this.age;
             animal.gender = this.gender;
@@ -102,7 +114,6 @@ public class Animal {
     //randomData
 
     public Animal randomDetailedInfo() {
-        this.setOwnerId(randomizeOwnerId());
         this.setPetName(randomizePetName());
         this.setAge(randomizeAge());
         this.setGender(randomizeGender());

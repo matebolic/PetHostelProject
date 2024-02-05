@@ -61,6 +61,7 @@ public class Reservation {
         this.animal = animal;
     }
 
-
-
+    public Integer getPeriodLength() {
+        return Math.toIntExact(this.finishingDate.toEpochDay() - this.startingDate.toEpochDay());
+    }
 }

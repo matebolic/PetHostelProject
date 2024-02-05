@@ -24,7 +24,7 @@ public class PetUtility {
     @JoinColumn(name="reservation_id")
     private Reservation reservation;
 
-    PetUtility(UtilityOptions utilityOptions, Reservation reservation) {
+    public PetUtility(UtilityOptions utilityOptions, Reservation reservation) {
         this.servicePrice = utilityOptions.getPriceOfService();
         this.serviceName = utilityOptions.getServiceName();
         this.reservation = reservation;

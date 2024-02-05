@@ -31,8 +31,9 @@ public class PetOwner {
     @OneToMany(mappedBy = "petOwner")
     private List<Reservation> reservations;
 
-    @Transient
-    private List<Animal> petList;
+    @JsonIgnore
+    @OneToMany(mappedBy = "petOwner")
+    private List<Animal> pets;
 
 
 //    private Long accountBalance;

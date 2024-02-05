@@ -14,16 +14,20 @@
 
 <table width="50%" th:each="animal : ${myAnimals}">
     <tr>
-        <hr style="width:100%;text-align:center">
+        <td>
+            <hr style="width:100%;text-align:center">
+        </td>
     </tr>
-    <tr><img src="https://cataas.com/cat" width="15%"></tr>
+    <tr>
+        <td><img src="https://cataas.com/cat" width="15%"></td>
+    </tr>
     <tr>
         <td>id:</td>
         <td th:text="${animal.id}">42354235</td>
     </tr>
     <tr>
-        <td>owner id:</td>
-        <td th:text="${animal.ownerId}">24242342356</td>
+        <td>owner:</td>
+        <td>24242342356</td>
     </tr>
     <tr>
         <td>name:</td>
@@ -51,9 +55,6 @@
     <tr>
         <td>What I like:</td>
         <td>mouses</td>
-    </tr>
-    <tr>
-        <hr style="width:100%;text-align:center">
     </tr>
 </table>
 
