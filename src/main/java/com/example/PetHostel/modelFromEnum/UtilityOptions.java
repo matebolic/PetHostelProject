@@ -11,6 +11,7 @@ public enum UtilityOptions {
 
     private String serviceName;
     private Integer priceOfService;
+    private Currency currency;
 
     UtilityOptions(String serviceName, Integer priceOfService) {
         this.serviceName = serviceName;

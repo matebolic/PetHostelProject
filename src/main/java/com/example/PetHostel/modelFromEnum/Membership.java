@@ -12,13 +12,13 @@ public enum Membership {
     private String nameOfLevel;
     private Integer levelOfMembership;
     private Double percentageOfDiscount;
-    private Integer stepsToUpgrade;
+    private Integer minMembershipPoints;
 
 
-    Membership(String nameOfLevel, Integer levelOfMembership, Double percentageOfDiscount, Integer stepsToUpgrade) {
+    Membership(String nameOfLevel, Integer levelOfMembership, Double percentageOfDiscount, Integer minMembershipPoints) {
         this.nameOfLevel = nameOfLevel;
         this.levelOfMembership = levelOfMembership;
         this.percentageOfDiscount = percentageOfDiscount;
-        this.stepsToUpgrade = stepsToUpgrade;
+        this.minMembershipPoints = minMembershipPoints;
     }
 }

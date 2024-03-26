@@ -26,6 +26,7 @@ public class PetOwner {
     private LocalDate dateOfBirth;
     @Enumerated(EnumType.STRING)
     private Membership membership;
+    private Integer membershipPoints;
 
     @JsonIgnore
     @OneToMany(mappedBy = "petOwner")
