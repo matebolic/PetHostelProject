@@ -1,7 +1,6 @@
 package com.example.PetHostel.model;
 
 import com.example.PetHostel.modelFromEnum.Gender;
-import com.example.PetHostel.modelFromEnum.PetCharacter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -38,9 +37,6 @@ public class Animal {
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private Boolean isNeutered;
-    @Enumerated(EnumType.STRING)
-    private PetCharacter petCharacter;
-
 
     @OneToMany(mappedBy = "animal")
     @JsonIgnore
@@ -50,21 +46,19 @@ public class Animal {
     private String specialNeeds;
     private String pictureURL;      //picture URL from a web API
 
-    public Animal(PetOwner petOwner, String petName, Integer age, Gender gender, Boolean isNeutered, PetCharacter petCharacter) {
+    public Animal(PetOwner petOwner, String petName, Integer age, Gender gender, Boolean isNeutered) {
         this.petOwner= petOwner;
         this.petName = petName;
         this.age = age;
         this.gender = gender;
         this.isNeutered = isNeutered;
-        this.petCharacter = petCharacter;
     }
 
-    public Animal(String petName, Integer age, Gender gender, Boolean isNeutered, PetCharacter petCharacter) {
+    public Animal(String petName, Integer age, Gender gender, Boolean isNeutered) {
         this.petName = petName;
         this.age = age;
         this.gender = gender;
         this.isNeutered = isNeutered;
-        this.petCharacter = petCharacter;
     }
 
     public static class AnimalBuilder {
@@ -73,8 +67,7 @@ public class Animal {
         private Integer age;
         private Gender gender;
         private Boolean isNeutered;
-        private PetCharacter petCharacter;
-        private String specialNeeds;
+         private String specialNeeds;
         private String pictureURL;
 
         public AnimalBuilder addBasicInfo(PetOwner petOwner, String petName) {
@@ -83,11 +76,10 @@ public class Animal {
             return this;
         }
 
-        public AnimalBuilder addDetailedInfo(Integer age, Gender gender, Boolean isNeutered, PetCharacter petCharacter) {
+        public AnimalBuilder addDetailedInfo(Integer age, Gender gender, Boolean isNeutered) {
             this.age = age;
             this.gender = gender;
             this.isNeutered = isNeutered;
-            this.petCharacter = petCharacter;
             return this;
         }
 
@@ -104,7 +96,7 @@ public class Animal {
             animal.age = this.age;
             animal.gender = this.gender;
             animal.isNeutered = this.isNeutered;
-            animal.petCharacter = this.petCharacter;
+//            animal.petCharacter = this.petCharacter;
             animal.specialNeeds = this.specialNeeds;
             animal.pictureURL = this.pictureURL;
             return animal;
@@ -118,7 +110,6 @@ public class Animal {
         this.setAge(randomizeAge());
         this.setGender(randomizeGender());
         this.setIsNeutered(randomizeNeutered());
-        this.setPetCharacter(randomizePetCharacter());
         return this;
     }
 
@@ -142,10 +133,6 @@ public class Animal {
 
     public Boolean randomizeNeutered() {
         return ThreadLocalRandom.current().nextInt(0, 2) != 0;
-    }
-
-    public PetCharacter randomizePetCharacter() {
-        return PetCharacter.values()[ThreadLocalRandom.current().nextInt(0, PetCharacter.values().length)];
     }
 
 }

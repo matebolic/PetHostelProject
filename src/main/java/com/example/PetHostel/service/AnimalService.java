@@ -3,18 +3,11 @@ package com.example.PetHostel.service;
 import com.example.PetHostel.model.Animal;
 import com.example.PetHostel.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class AnimalService {
@@ -50,7 +43,7 @@ public class AnimalService {
     }
 
     public List<Animal> findNow() {
-        return animalRepository.findNow();
+        return animalRepository.findActual();
     }
 
 

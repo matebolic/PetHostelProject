@@ -6,7 +6,6 @@ import com.example.PetHostel.model.PetUtility;
 import com.example.PetHostel.model.Reservation;
 import com.example.PetHostel.modelFromEnum.Gender;
 import com.example.PetHostel.modelFromEnum.Membership;
-import com.example.PetHostel.modelFromEnum.PetCharacter;
 import com.example.PetHostel.modelFromEnum.UtilityOptions;
 import com.example.PetHostel.repository.AnimalRepository;
 import com.example.PetHostel.repository.PetOwnerRepository;
@@ -45,7 +44,7 @@ public class PetHostelApplication {
             petOwnerRepository.save(petOwner_mb);
             petOwnerRepository.save(petOwner_mtb);
 
-            Animal cirmir = new Animal.AnimalBuilder().addBasicInfo(petOwner_mb, "Cirmir").addDetailedInfo(1, Gender.MALE, false, PetCharacter.KIND).build();
+            Animal cirmir = new Animal.AnimalBuilder().addBasicInfo(petOwner_mb, "Cirmir").addDetailedInfo(1, Gender.MALE, false).build();
             animalRepository.save(cirmir);
 
             for (int i = 0; i < 10; i++) {
