@@ -34,12 +34,15 @@ public class Animal {
 
     //DetailedInfo
     private Integer age;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
     private Boolean isNeutered;
 
     //OptionalInfo
     private String specialNeeds;
+
     private String pictureURL;      //picture URL from a web API
 
     public Animal(PetOwner petOwner, String petName, Integer age, Gender gender, Boolean isNeutered) {

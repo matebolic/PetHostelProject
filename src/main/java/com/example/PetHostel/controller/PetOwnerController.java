@@ -39,20 +39,10 @@ public class PetOwnerController {
         return petOwnerService.findByFullName(fullName);
     }
 
-
-    //findByMembership - public on website
-    @GetMapping("/findByMembership/{membershipStr}")
-    public List<PetOwner> findByMembership(@PathVariable String membershipStr) {
-        Membership membership = Arrays.stream(Membership.values()).filter(mb -> mb.getNameOfLevel().equals(membershipStr.toString())).findFirst().orElse(Membership.NONE);
-        return petOwnerService.findByMembership(membership);
-    }
-
-    //admin queries!!
-
     //-------------------------------------------------------------------------------//
 
     @PutMapping("/update")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public PetOwner update(@RequestBody PetOwner petOwner) {
         return petOwnerService.save(petOwner);
     }
@@ -60,7 +50,6 @@ public class PetOwnerController {
 
     //-------------------------------------------------------------------------------//
 
-    //with admin
     @DeleteMapping("/deleteById/{id}")
     public void deleteById(@PathVariable Long id) {
         petOwnerService.deleteById(id);

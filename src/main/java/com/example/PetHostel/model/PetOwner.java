@@ -18,14 +18,19 @@ public class PetOwner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(nullable = false, length = 30)
     private String firstName;
+
     @Column(nullable = false, length = 30)
     private String lastName;
+
     @Column(nullable = false)
     private LocalDate dateOfBirth;
+
     @Enumerated(EnumType.STRING)
     private Membership membership;
+
     private Integer membershipPoints;
 
     @JsonIgnore

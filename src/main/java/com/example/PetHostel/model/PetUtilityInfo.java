@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -12,7 +13,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 
-public class UtilityInfo {
+public class PetUtilityInfo {
+
+    public static LocalTime daycareStartingTime = LocalTime.parse("8:00");
+    public static LocalTime boardingStartingTime = LocalTime.parse("20:00");
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +34,7 @@ public class UtilityInfo {
     private LocalDate dateOfLastPriceModification;
 
 
-    public UtilityInfo(String serviceName, String description, Currency currency, Integer priceOfService) {
+    public PetUtilityInfo(String serviceName, String description, Currency currency, Integer priceOfService) {
         this.serviceName = serviceName;
         this.description = description;
         this.currency = currency;

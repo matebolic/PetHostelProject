@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,11 +28,21 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    private LocalDateTime startingDateTime;
+
+    @Transient
     private LocalDate startingDate;
 
-    @Column(nullable = false)
+    @Transient
+    private LocalTime startingTime;
+
+    private LocalDateTime finishingDateTime;
+
+    @Transient
     private LocalDate finishingDate;
+
+    @Transient
+    private LocalTime finishingTime;
 
     @ManyToOne
     @JoinColumn(name = "pet_owner_id")
@@ -40,23 +53,24 @@ public class Reservation {
     private List<PetUtility> utilities;
 
     @Transient
-    private Integer periodLength;
-
-    @Transient
     private Integer price;
 
     @JsonIgnore
-    private List<Long> animalsPerReservationsList;
+    private List<Long> animalsPerReservationsList = new ArrayList<>();
     //mapped by id!
 
-    public Reservation(PetOwner petOwner, String startingDateStr, String finishingDateStr) {
+    public Reservation(PetOwner petOwner, String startingDateStr, String startingTimeStr, String finishingDateStr, String finishingTimeStr) {
+        this.petOwner = petOwner;
         this.startingDate = LocalDate.parse(startingDateStr);
+        this.startingTime = LocalTime.parse(startingTimeStr);
         this.finishingDate = LocalDate.parse(finishingDateStr);
-        this.periodLength = Math.toIntExact(finishingDate.toEpochDay() - startingDate.toEpochDay());
+        this.finishingTime = LocalTime.parse(finishingTimeStr);
+        this.startingDateTime = LocalDateTime.of(this.startingDate, this.startingTime);
+        this.finishingDateTime = LocalDateTime.of(this.finishingDate, this.finishingTime);
     }
 
-    public Integer getPeriodLength() {
-        return Math.toIntExact(this.finishingDate.toEpochDay() - this.startingDate.toEpochDay());
+    public void addAnimal(Animal animal) {
+        this.animalsPerReservationsList.add(animal.getId());
     }
 
     public Double generatePrice() {

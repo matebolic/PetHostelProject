@@ -18,16 +18,9 @@ public class ReservationService {
     @Autowired
     ReservationRepository reservationRepository;
 
-    @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(Reservation reservation) {
         return reservationRepository.save(reservation);
     }
-
-
-    public Reservation update(Reservation reservation) {
-        return reservationRepository.save(reservation);
-    }
-
 
     public List<Reservation> findAll() {
         return reservationRepository.findAll();
@@ -35,6 +28,10 @@ public class ReservationService {
 
     public Reservation findById(Long id) {
         return reservationRepository.findById(id).orElseThrow();
+    }
+
+    public Reservation update(Reservation reservation) {
+        return reservationRepository.save(reservation);
     }
 
     public void deleteById(Long id) {

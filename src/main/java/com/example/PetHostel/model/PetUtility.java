@@ -16,17 +16,18 @@ public class PetUtility {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long serviceId;
+
     private String serviceName;
+
     private Integer servicePrice;
 
     @ManyToOne
-    @JoinColumn(name="reservation_id")
+    @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
-    public PetUtility(Reservation reservation, UtilityInfo utilityInfo) {
-        this.reservation = reservation;
-        this.servicePrice = utilityInfo.getPriceOfService();
-        this.serviceName = utilityInfo.getServiceName();
+    public PetUtility(PetUtilityInfo petUtilityInfo) {
+        this.servicePrice = petUtilityInfo.getPriceOfService();
+        this.serviceName = petUtilityInfo.getServiceName();
     }
 
 }

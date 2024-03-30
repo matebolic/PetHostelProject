@@ -4,6 +4,7 @@ import com.example.PetHostel.model.Animal;
 import com.example.PetHostel.model.PetOwner;
 import com.example.PetHostel.modelFromEnum.Membership;
 import com.example.PetHostel.repository.PetOwnerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,11 +34,6 @@ public class PetOwnerService {
         return petOwnerRepository.findAll();
     }
 
-    public List<PetOwner> findByMembership(Membership membership) {
-        return petOwnerRepository.findByMembership(membership);
-    }
-
-
     public List<PetOwner> findByFullName(String fullName) {
         return petOwnerRepository.findByFullName(fullName);
     }
@@ -51,8 +47,8 @@ public class PetOwnerService {
 
     //-------------------------------------------------------------------------------//
 
-    @DeleteMapping("/deleteById/{id}")
-    public void deleteById(@PathVariable Long id) {
+    @Transactional
+    public void deleteById(Long id) {
         petOwnerRepository.deleteById(id);
     }
 

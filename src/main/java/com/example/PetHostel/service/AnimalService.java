@@ -3,9 +3,11 @@ package com.example.PetHostel.service;
 import com.example.PetHostel.model.Animal;
 import com.example.PetHostel.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,15 +21,20 @@ public class AnimalService {
         return animalRepository.save(animal);
     }
 
-    //-------------------------------------------------------------------------------//
-
     public List<Animal> findAll() {
         return animalRepository.findAll();
     }
 
-
     public Animal findById(Long id) {
         return animalRepository.findById(id).orElseThrow();
+    }
+
+    public List<Animal> findByPetNameIgnoreCase(String petName) {
+        return animalRepository.findByPetNameIgnoreCase(petName);
+    }
+
+    public List<Animal> findByDates(LocalDateTime searchedDateTime) {
+        return animalRepository.findByDates(searchedDateTime);
     }
 
     public List<Animal> findByOwnerId(Long id) {
@@ -38,54 +45,9 @@ public class AnimalService {
         return animalRepository.findByTheOwnerFullName(fullName);
     }
 
-    public List<Animal> findByPetName(String petName) {
-        return animalRepository.findByPetNameIgnoreCase(petName);
-    }
-
-    public List<Animal> findNow() {
-        return animalRepository.findActual();
-    }
-
-
-    public List<Animal> findByDates(LocalDate localDate) {
-        return animalRepository.findByDates(localDate);
-    }
-
     public String getAvgAgeOfAnimal() {
         return animalRepository.findAll().stream().map(animal -> animal.getAge()).mapToInt(a -> a).summaryStatistics().toString();
     }
 
-    public Animal getActualYoungest() {
-        return animalRepository.findAll().stream()
-                .sorted(Comparator.comparing(a -> a.getAge()))
-                .findFirst()
-                .orElseThrow();
-    }
-
-    public Animal getActualOldest() {
-        return animalRepository.findAll().stream()
-                .sorted(new Comparator<Animal>() {
-                    @Override
-                    public int compare(Animal a1, Animal a2) {
-                        return a1.getAge() > a2.getAge() ? -1 : 1;
-                    }
-                })
-                .findFirst()
-                .orElseThrow();
-    }
-
-    //-------------------------------------------------------------------------------//
-
-    public void updateName(String name, Long id) {
-        animalRepository.updateName(name, id);
-    }
-
-
-    //-------------------------------------------------------------------------------//
-
-    public void deleteById(Long id) {
-        animalRepository.deleteById(id);
-
-    }
 
 }

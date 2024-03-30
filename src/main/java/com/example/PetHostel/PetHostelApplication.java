@@ -6,7 +6,7 @@ import com.example.PetHostel.model.PetUtility;
 import com.example.PetHostel.model.Reservation;
 import com.example.PetHostel.modelFromEnum.Currency;
 import com.example.PetHostel.modelFromEnum.Gender;
-import com.example.PetHostel.model.UtilityInfo;
+import com.example.PetHostel.model.PetUtilityInfo;
 import com.example.PetHostel.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -39,6 +39,8 @@ public class PetHostelApplication {
         return args -> {
             System.out.println("Welcome in PetHostel terminal! Ready to work.");
 
+            //creating UtilityInfos - part 1
+
             String descriptionBoarding = "Our boarding facility is fully equipped; with inox bowles " +
                     "for food and water, pet beds with soft blankets, various types of toys. We" +
                     " use premium quality cat food so the furry baby can arrive with his / her vaccination" +
@@ -49,7 +51,15 @@ public class PetHostelApplication {
                     " we have rainy cold days they can play inside the heated house with confortable places, and" +
                     " the inner closed playground.";
 
-            String descriptionWalking = "Upon a thorough," +
+            PetUtilityInfo boarding = new PetUtilityInfo("boarding", descriptionBoarding, Currency.HUF, 5000);
+            PetUtilityInfo daycare = new PetUtilityInfo("daycare", descriptionDaycare, Currency.HUF, 6000);
+
+            utilityInfoRepository.save(boarding);
+            utilityInfoRepository.save(daycare);
+
+            //creating UtilityInfos - part 2
+
+/*            String descriptionWalking = "Upon a thorough," +
                     " complex selection process we employ college students that are cat owners themselves and are familiar with cats," +
                     " their behaviour / signals and are able to handle unexpected situations. In order that the cat walker does the job" +
                     " properly, we recommend the owner and the cat a personal meeting with him / her first. It is essential that the owner provides" +
@@ -59,19 +69,13 @@ public class PetHostelApplication {
 
             String descriptionGrooming = "A clean cat is a happy cat, and we're here to help! From nail trims to bathing, a little maintenance goes a long way.";
 
-
-            //creating UtilityInfos
-            UtilityInfo boarding = new UtilityInfo("boarding", descriptionBoarding, Currency.HUF, 5000);
-            UtilityInfo daycare = new UtilityInfo("daycare", descriptionDaycare, Currency.HUF, 6000);
             UtilityInfo walking = new UtilityInfo("walking", descriptionWalking, Currency.HUF, 2000);
             UtilityInfo training = new UtilityInfo("training", descriptionTraining, Currency.HUF, 3000);
             UtilityInfo grooming = new UtilityInfo("grooming", descriptionGrooming, Currency.HUF, 4500);
 
-            utilityInfoRepository.save(boarding);
-            utilityInfoRepository.save(daycare);
             utilityInfoRepository.save(walking);
             utilityInfoRepository.save(training);
-            utilityInfoRepository.save(grooming);
+            utilityInfoRepository.save(grooming);*/
 
             PetOwner petOwner_mb = new PetOwner("George", "Best", "1981-10-11");
             PetOwner petOwner_mtb = new PetOwner("Barbara", "Swenson", "1981-06-27");
@@ -90,8 +94,8 @@ public class PetHostelApplication {
 
             }
 
-            Reservation reservation01 = new Reservation(petOwner_mb, "2024-01-22", "2024-02-03");
-            Reservation reservation02 = new Reservation(petOwner_mb, "2024-02-22", "2024-04-03");
+            Reservation reservation01 = new Reservation(petOwner_mb, "2024-01-22", "18:00", "2024-02-03", "8:00");
+            Reservation reservation02 = new Reservation(petOwner_mb, "2024-03-22", "14:00", "2024-04-07", "9:00");
 
 
             reservationRepository.save(reservation01);
@@ -99,8 +103,6 @@ public class PetHostelApplication {
 
             petUtilityRepository.save(new PetUtility(reservation01, boarding));
             petUtilityRepository.save(new PetUtility(reservation01, daycare));
-
-            petUtilityRepository.save(new PetUtility(reservation02, grooming));
 
             System.out.println("Succesfully finished with CommandLineRunner.");
 
