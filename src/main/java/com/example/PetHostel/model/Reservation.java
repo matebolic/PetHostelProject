@@ -24,22 +24,20 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(nullable = false)
     private LocalDate startingDate;
+
     @Column(nullable = false)
     private LocalDate finishingDate;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "reservation")
-    private List<PetUtility> utilities;
-
-    @ManyToOne
-    @JoinColumn(name = "animal_id")
-    private Animal animal;
 
     @ManyToOne
     @JoinColumn(name = "pet_owner_id")
     private PetOwner petOwner;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "reservation")
+    private List<PetUtility> utilities;
 
     @Transient
     private Integer periodLength;
@@ -47,21 +45,23 @@ public class Reservation {
     @Transient
     private Integer price;
 
+    @JsonIgnore
+    private List<Long> animalsPerReservationsList;
+    //mapped by id!
 
-    public Reservation(String startingDateStr, String finishingDateStr, PetOwner petOwner) {
+    public Reservation(PetOwner petOwner, String startingDateStr, String finishingDateStr) {
         this.startingDate = LocalDate.parse(startingDateStr);
         this.finishingDate = LocalDate.parse(finishingDateStr);
         this.periodLength = Math.toIntExact(finishingDate.toEpochDay() - startingDate.toEpochDay());
-    }
-
-    public Reservation(String startingDateStr, String finishingDateStr, PetOwner petOwner, Animal animal) {
-        this.startingDate = LocalDate.parse(startingDateStr);
-        this.finishingDate = LocalDate.parse(finishingDateStr);
-        this.periodLength = Math.toIntExact(finishingDate.toEpochDay() - startingDate.toEpochDay());
-        this.animal = animal;
     }
 
     public Integer getPeriodLength() {
         return Math.toIntExact(this.finishingDate.toEpochDay() - this.startingDate.toEpochDay());
     }
+
+    public Double generatePrice() {
+        return null;
+    }
+
+
 }

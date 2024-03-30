@@ -38,10 +38,6 @@ public class Animal {
     private Gender gender;
     private Boolean isNeutered;
 
-    @OneToMany(mappedBy = "animal")
-    @JsonIgnore
-    private Set<Reservation> reservationOfAnimal;
-
     //OptionalInfo
     private String specialNeeds;
     private String pictureURL;      //picture URL from a web API

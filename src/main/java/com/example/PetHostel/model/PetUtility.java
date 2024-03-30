@@ -1,6 +1,5 @@
 package com.example.PetHostel.model;
 
-import com.example.PetHostel.modelFromEnum.UtilityOptions;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,10 +23,10 @@ public class PetUtility {
     @JoinColumn(name="reservation_id")
     private Reservation reservation;
 
-    public PetUtility(UtilityOptions utilityOptions, Reservation reservation) {
-        this.servicePrice = utilityOptions.getPriceOfService();
-        this.serviceName = utilityOptions.getServiceName();
+    public PetUtility(Reservation reservation, UtilityInfo utilityInfo) {
         this.reservation = reservation;
+        this.servicePrice = utilityInfo.getPriceOfService();
+        this.serviceName = utilityInfo.getServiceName();
     }
 
 }

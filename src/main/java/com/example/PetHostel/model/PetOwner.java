@@ -18,9 +18,9 @@ public class PetOwner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 30)
     private String firstName;
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 30)
     private String lastName;
     @Column(nullable = false)
     private LocalDate dateOfBirth;
@@ -34,25 +34,19 @@ public class PetOwner {
 
     @JsonIgnore
     @OneToMany(mappedBy = "petOwner")
-    private List<Animal> pets;
+    private List<Animal> animals;
 
 
 //    private Long accountBalance;
 //    private Double actualLocationX;
 //    private Double actualLocationY;
 
-    public PetOwner(String firstName, String lastName, String dateString, Membership membership) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = LocalDate.parse(dateString);
-        this.membership = membership;
-    }
 
     public PetOwner(String firstName, String lastName, String dateString) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateString);
-        this.membership = Membership.NONE;
+        this.membershipPoints = 0;  //initial value
     }
 
 }
