@@ -1,33 +1,44 @@
 package com.example.PetHostel.model;
 
+import com.example.PetHostel.modelFromEnum.Currency;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-@Entity
+
 public class PetUtility {
+
+    public static LocalTime daycareStartingTime = LocalTime.parse("8:00");
+    public static LocalTime boardingStartingTime = LocalTime.parse("20:00");
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long serviceId;
+    private Long utilityId;
 
-    private String serviceName;
+    private String utilityName;
 
-    private Integer servicePrice;
+    private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
 
-    public PetUtility(PetUtilityInfo petUtilityInfo) {
-        this.servicePrice = petUtilityInfo.getPriceOfService();
-        this.serviceName = petUtilityInfo.getServiceName();
+    private Integer price;
+
+    private LocalDate dateOfLastPriceModification;
+
+
+    public PetUtility(String utilityName, String description, Currency currency, Integer price) {
+        this.utilityName = utilityName;
+        this.description = description;
+        this.currency = currency;
+        this.price = price;
+        this.dateOfLastPriceModification = LocalDate.now();
     }
-
 }

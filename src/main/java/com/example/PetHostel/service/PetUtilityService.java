@@ -1,8 +1,7 @@
 package com.example.PetHostel.service;
 
-import com.example.PetHostel.model.PetUtility;
+import com.example.PetHostel.model.PetService;
 import com.example.PetHostel.model.Reservation;
-import com.example.PetHostel.repository.PetOwnerRepository;
 import com.example.PetHostel.repository.PetUtilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,17 +17,17 @@ public class PetUtilityService {
 
     //-------------------------------------------------------------------------------//
 
-    public PetUtility save(PetUtility petUtility) {
-        return petUtilityRepository.save(petUtility);
+    public PetService save(PetService petService) {
+        return petUtilityRepository.save(petService);
     }
 
     //-------------------------------------------------------------------------------//
 
-    public List<PetUtility> findAll() {
+    public List<PetService> findAll() {
         return petUtilityRepository.findAll();
     }
 
-    public List<PetUtility> findByReservation(Reservation reservation) {
+    public List<PetService> findByReservation(Reservation reservation) {
         return petUtilityRepository.findByReservation(reservation);
 
     }

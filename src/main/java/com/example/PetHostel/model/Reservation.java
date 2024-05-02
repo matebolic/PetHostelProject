@@ -7,14 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @Getter
@@ -50,9 +47,8 @@ public class Reservation {
 
     @JsonIgnore
     @OneToMany(mappedBy = "reservation")
-    private List<PetUtility> utilities;
+    private List<PetService> utilities;
 
-    @Transient
     private Integer price;
 
     @JsonIgnore
@@ -72,9 +68,11 @@ public class Reservation {
     public void addAnimal(Animal animal) {
         this.animalsPerReservationsList.add(animal.getId());
     }
+    //to avoid creating multiple animal objects
 
     public Double generatePrice() {
         return null;
+        //setter?-----------------------------------------------------
     }
 
 

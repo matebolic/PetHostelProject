@@ -2,11 +2,11 @@ package com.example.PetHostel;
 
 import com.example.PetHostel.model.Animal;
 import com.example.PetHostel.model.PetOwner;
-import com.example.PetHostel.model.PetUtility;
+import com.example.PetHostel.model.PetService;
 import com.example.PetHostel.model.Reservation;
 import com.example.PetHostel.modelFromEnum.Currency;
 import com.example.PetHostel.modelFromEnum.Gender;
-import com.example.PetHostel.model.PetUtilityInfo;
+import com.example.PetHostel.model.PetUtility;
 import com.example.PetHostel.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -51,8 +51,8 @@ public class PetHostelApplication {
                     " we have rainy cold days they can play inside the heated house with confortable places, and" +
                     " the inner closed playground.";
 
-            PetUtilityInfo boarding = new PetUtilityInfo("boarding", descriptionBoarding, Currency.HUF, 5000);
-            PetUtilityInfo daycare = new PetUtilityInfo("daycare", descriptionDaycare, Currency.HUF, 6000);
+            PetUtility boarding = new PetUtility("boarding", descriptionBoarding, Currency.HUF, 5000);
+            PetUtility daycare = new PetUtility("daycare", descriptionDaycare, Currency.HUF, 6000);
 
             utilityInfoRepository.save(boarding);
             utilityInfoRepository.save(daycare);
@@ -101,8 +101,8 @@ public class PetHostelApplication {
             reservationRepository.save(reservation01);
             reservationRepository.save(reservation02);
 
-            petUtilityRepository.save(new PetUtility(reservation01, boarding));
-            petUtilityRepository.save(new PetUtility(reservation01, daycare));
+            petUtilityRepository.save(new PetService(reservation01, boarding));
+            petUtilityRepository.save(new PetService(reservation01, daycare));
 
             System.out.println("Succesfully finished with CommandLineRunner.");
 

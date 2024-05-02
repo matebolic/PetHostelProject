@@ -1,7 +1,6 @@
 package com.example.PetHostel.controller;
 
-import com.example.PetHostel.model.PetOwner;
-import com.example.PetHostel.model.PetUtility;
+import com.example.PetHostel.model.PetService;
 import com.example.PetHostel.model.Reservation;
 import com.example.PetHostel.service.PetUtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +18,20 @@ public class PetUtilityController {
     //-------------------------------------------------------------------------------//
 
     @PostMapping("/save")
-    public PetUtility save(@RequestBody PetUtility petUtility) {
-        return petUtilityService.save(petUtility);
+    public PetService save(@RequestBody PetService petService) {
+        return petUtilityService.save(petService);
     }
 
     //-------------------------------------------------------------------------------//
 
     @GetMapping("/findByReservation")
-    public List<PetUtility> findByReservation(@RequestBody Reservation reservation) {
+    public List<PetService> findByReservation(@RequestBody Reservation reservation) {
         return petUtilityService.findByReservation(reservation);
     }
 
 
     @GetMapping("/findAll")
-    public List<PetUtility> findAll() {
+    public List<PetService> findAll() {
         return petUtilityService.findAll();
     }
 
@@ -40,8 +39,8 @@ public class PetUtilityController {
     //-------------------------------------------------------------------------------//
 
     @PostMapping("/update")
-    public PetUtility update(@RequestBody PetUtility petUtility) {
-        return petUtilityService.save(petUtility);
+    public PetService update(@RequestBody PetService petService) {
+        return petUtilityService.save(petService);
     }
 
 
