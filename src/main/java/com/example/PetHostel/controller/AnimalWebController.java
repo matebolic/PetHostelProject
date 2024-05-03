@@ -13,7 +13,7 @@ public class AnimalWebController {
     @Autowired
     AnimalService animalService;
 
-    @RequestMapping("/catsite/findAll")
+    @RequestMapping("/cathostel/web/animal")
     public String animals(Model model) {
         model.addAttribute("myAnimals", animalService.findAll());
         return "animals";

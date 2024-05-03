@@ -1,8 +1,8 @@
 package com.example.PetHostel.controller;
 
-import com.example.PetHostel.model.PetService;
+import com.example.PetHostel.model.PetServices;
 import com.example.PetHostel.model.Reservation;
-import com.example.PetHostel.service.PetUtilityService;
+import com.example.PetHostel.service.PetServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,34 +13,34 @@ import java.util.List;
 public class PetUtilityController {
 
     @Autowired
-    PetUtilityService petUtilityService;
+    PetServicesService petServicesService;
 
     //-------------------------------------------------------------------------------//
 
     @PostMapping("/save")
-    public PetService save(@RequestBody PetService petService) {
-        return petUtilityService.save(petService);
+    public PetServices save(@RequestBody PetServices petServices) {
+        return petServicesService.save(petServices);
     }
 
     //-------------------------------------------------------------------------------//
 
     @GetMapping("/findByReservation")
-    public List<PetService> findByReservation(@RequestBody Reservation reservation) {
-        return petUtilityService.findByReservation(reservation);
+    public List<PetServices> findByReservation(@RequestBody Reservation reservation) {
+        return petServicesService.findByReservation(reservation);
     }
 
 
     @GetMapping("/findAll")
-    public List<PetService> findAll() {
-        return petUtilityService.findAll();
+    public List<PetServices> findAll() {
+        return petServicesService.findAll();
     }
 
 
     //-------------------------------------------------------------------------------//
 
     @PostMapping("/update")
-    public PetService update(@RequestBody PetService petService) {
-        return petUtilityService.save(petService);
+    public PetServices update(@RequestBody PetServices petServices) {
+        return petServicesService.save(petServices);
     }
 
 
@@ -48,7 +48,7 @@ public class PetUtilityController {
 
     @DeleteMapping("/deleteById/{id}")
     public void deleteById(@PathVariable Long id) {
-        petUtilityService.deleteById(id);
+        petServicesService.deleteById(id);
     }
 
     //-------------------------------------------------------------------------------//

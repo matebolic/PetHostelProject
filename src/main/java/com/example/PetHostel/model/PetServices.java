@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class PetService {
+public class PetServices {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +25,7 @@ public class PetService {
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
-    public PetService(PetUtility petUtility) {
+    public PetServices(PetUtility petUtility) {
         this.price = petUtility.getPrice();
         this.serviceName = petUtility.getUtilityName();
     }
