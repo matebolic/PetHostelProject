@@ -21,4 +21,5 @@ public enum Membership {
         this.percentageOfDiscount = percentageOfDiscount;
         this.minMembershipPoints = minMembershipPoints;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.PetHostel.model;
 
+import com.example.PetHostel.modelFromEnum.Currency;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,15 +20,20 @@ public class PetServices {
 
     private String serviceName;
 
+    private String description;
+
     private Integer price;
+    //#T001 - currency change is needed according to the users default/choosen currency it have to be converted from the base currency
 
     @ManyToOne
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
     public PetServices(PetUtility petUtility) {
-        this.price = petUtility.getPrice();
         this.serviceName = petUtility.getUtilityName();
+        this.description = new String(petUtility.getDescription());
+        this.price = petUtility.getPrice();
+        //#T001 - currency change is needed
     }
 
 }

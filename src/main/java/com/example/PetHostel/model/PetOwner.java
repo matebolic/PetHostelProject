@@ -1,5 +1,6 @@
 package com.example.PetHostel.model;
 
+import com.example.PetHostel.modelFromEnum.Currency;
 import com.example.PetHostel.modelFromEnum.Membership;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -33,6 +34,8 @@ public class PetOwner {
 
     private Integer membershipPoints;
 
+    private Currency currency;
+
     @JsonIgnore
     @OneToMany(mappedBy = "petOwner")
     private List<Reservation> reservations;
@@ -46,12 +49,24 @@ public class PetOwner {
 //    private Double actualLocationX;
 //    private Double actualLocationY;
 
-
-    public PetOwner(String firstName, String lastName, String dateString) {
+    public PetOwner(String firstName, String lastName, String dateString, Currency currency) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateString);
         this.membershipPoints = 0;  //initial value
+        this.membership = Membership.NONE;
+        this.currency = currency;
     }
+
+    public PetOwner calculateMembership() {
+        int serialOfActualMembership = this.membership.ordinal();
+        while (serialOfActualMembership < Membership.values().length - 1) {
+            if (this.membershipPoints > Membership.values()[serialOfActualMembership + 1].getMinMembershipPoints()) {
+                this.setMembership(Membership.values()[serialOfActualMembership + 1]);
+            }
+        }
+        return this;
+    }
+
 
 }

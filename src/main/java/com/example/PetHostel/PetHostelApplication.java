@@ -1,9 +1,7 @@
 package com.example.PetHostel;
 
-import com.example.PetHostel.model.Animal;
-import com.example.PetHostel.model.PetOwner;
-import com.example.PetHostel.model.PetServices;
-import com.example.PetHostel.model.Reservation;
+import com.example.PetHostel.model.*;
+import com.example.PetHostel.modelFromEnum.Currency;
 import com.example.PetHostel.modelFromEnum.Gender;
 import com.example.PetHostel.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +33,12 @@ public class PetHostelApplication {
     @Bean
     public CommandLineRunner runner() {
         return args -> {
+            System.out.println("-".repeat(40));
             System.out.println("Welcome in PetHostel terminal! Ready to work.");
+            System.out.println("-".repeat(40));
 
-
-
-            PetOwner petOwner_mb = new PetOwner("George", "Best", "1981-10-11");
-            PetOwner petOwner_mtb = new PetOwner("Barbara", "Swenson", "1981-06-27");
+            PetOwner petOwner_mb = new PetOwner("Matthieu", "Blaise", "1981-10-11", Currency.HUF);
+            PetOwner petOwner_mtb = new PetOwner("Barbara", "Swenson", "1981-06-27", Currency.HUF);
             petOwnerRepository.save(petOwner_mb);
             petOwnerRepository.save(petOwner_mtb);
 
@@ -58,12 +56,10 @@ public class PetHostelApplication {
 
             Reservation reservation01 = new Reservation(petOwner_mb, "2024-01-22", "18:00", "2024-02-03", "8:00");
             Reservation reservation02 = new Reservation(petOwner_mb, "2024-03-22", "14:00", "2024-04-07", "9:00");
-
-
             reservationRepository.save(reservation01);
             reservationRepository.save(reservation02);
 
-            petServicesRepository.save(new PetServices(reservation01, boarding));
+            petServicesRepository.save(new PetServices);
             petServicesRepository.save(new PetServices(reservation01, daycare));
 
             System.out.println("Succesfully finished with CommandLineRunner.");
