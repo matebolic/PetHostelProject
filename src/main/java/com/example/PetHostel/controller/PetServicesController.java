@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cathostel/utilities")
-public class PetUtilityController {
+public class PetServicesController {
 
     @Autowired
     PetServicesService petServicesService;

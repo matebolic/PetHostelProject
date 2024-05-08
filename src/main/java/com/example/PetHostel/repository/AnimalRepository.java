@@ -14,11 +14,8 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
     List<Animal> findByPetNameIgnoreCase(String petName);
 
-    @Query("SELECT a FROM Animal a JOIN a.reservationOfAnimal r WHERE :searchedDateTime BETWEEN r.startingDateTime And r.finishingDateTime")
-    List<Animal> findByDates(@Param("searchedDateTime") LocalDateTime searchedDateTime);
-
     @Query("SELECT a FROM Animal a WHERE a.pet_owner_id = :ownerId")
-    List<Animal> findByOwnerId(Long id);
+    List<Animal> findByOwnerId(@Param("ownerId") Long id);
 
     @Query("SELECT a FROM Animal a JOIN PetOwner o WHERE CONCAT(o.lastName, ' ', o.firstName) = :fullName")
     List<Animal> findByTheOwnerFullName(@Param("fullName") String fullName);

@@ -41,11 +41,6 @@ public class AnimalController {
         return animalService.findByPetNameIgnoreCase(petName);
     }
 
-    @GetMapping("/findByDates/{searchedDateTime}")
-    public List<Animal> findByDates(@PathVariable String searchedDateTimeStr) {
-        return animalService.findByDates(LocalDateTime.parse(searchedDateTimeStr));
-    }
-
     @GetMapping("/findByOwnerId/{id}")
     public List<Animal> findByOwnerId(@PathVariable Long id) {
         return animalService.findByOwnerId(id);

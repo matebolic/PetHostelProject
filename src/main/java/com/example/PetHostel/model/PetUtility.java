@@ -4,8 +4,12 @@ import com.example.PetHostel.modelFromEnum.Currency;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,8 +19,9 @@ import java.time.LocalTime;
 
 public class PetUtility {
 
-    public static LocalTime daycareStartingTime = LocalTime.parse("8:00");
-    public static LocalTime boardingStartingTime = LocalTime.parse("20:00");
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
+    public static LocalTime daycareStartingTime = LocalTime.parse("8:00", formatter);
+    public static LocalTime boardingStartingTime = LocalTime.parse("20:00", formatter);
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

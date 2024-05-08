@@ -23,8 +23,11 @@ public class Initializer {
                 " we have rainy cold days they can play inside the heated house with confortable places, and" +
                 " the inner closed playground.";
 
+        String descriptionWalk = "We walk with cats in our wonderful neihgbourhood. We only use the cats' own accessories";
+
         PetUtility boarding = new PetUtility("boarding", descriptionBoarding, Currency.HUF, 5000);
         PetUtility daycare = new PetUtility("daycare", descriptionDaycare, Currency.HUF, 6000);
+        PetUtility walk = new PetUtility("walk", descriptionWalk, Currency.HUF, 2000);
 
         petUtilityRepository.save(boarding);
         petUtilityRepository.save(daycare);

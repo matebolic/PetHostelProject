@@ -1,5 +1,6 @@
 package com.example.PetHostel;
 
+import com.example.PetHostel.function.Initializer;
 import com.example.PetHostel.model.*;
 import com.example.PetHostel.modelFromEnum.Currency;
 import com.example.PetHostel.modelFromEnum.Gender;
@@ -33,6 +34,8 @@ public class PetHostelApplication {
     @Bean
     public CommandLineRunner runner() {
         return args -> {
+
+
             System.out.println("-".repeat(40));
             System.out.println("Welcome in PetHostel terminal! Ready to work.");
             System.out.println("-".repeat(40));
@@ -41,6 +44,8 @@ public class PetHostelApplication {
             PetOwner petOwner_mtb = new PetOwner("Barbara", "Swenson", "1981-06-27", Currency.HUF);
             petOwnerRepository.save(petOwner_mb);
             petOwnerRepository.save(petOwner_mtb);
+
+            new Initializer().savePetUtility();
 
             Animal cirmir = new Animal.AnimalBuilder().addBasicInfo(petOwner_mb, "Cirmir").addDetailedInfo(1, Gender.MALE, false).build();
             animalRepository.save(cirmir);
@@ -58,9 +63,6 @@ public class PetHostelApplication {
             Reservation reservation02 = new Reservation(petOwner_mb, "2024-03-22", "14:00", "2024-04-07", "9:00");
             reservationRepository.save(reservation01);
             reservationRepository.save(reservation02);
-
-            petServicesRepository.save(new PetServices);
-            petServicesRepository.save(new PetServices(reservation01, daycare));
 
             System.out.println("Succesfully finished with CommandLineRunner.");
 

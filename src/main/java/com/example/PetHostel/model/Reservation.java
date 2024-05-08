@@ -47,7 +47,7 @@ public class Reservation {
 
     @JsonIgnore
     @OneToMany(mappedBy = "reservation")
-    private List<PetServices> utilities;
+    private List<PetServices> services;
 
     private Integer price;
 

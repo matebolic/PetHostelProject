@@ -23,7 +23,7 @@ public class PetServices {
     private String description;
 
     private Integer price;
-    //#T001 - currency change is needed according to the users default/choosen currency it have to be converted from the base currency
+    //#T001 - currency change is needed according to the users default/choosen currency it has to be converted from the base currency
 
     @ManyToOne
     @JoinColumn(name = "reservation_id")
@@ -31,7 +31,7 @@ public class PetServices {
 
     public PetServices(PetUtility petUtility) {
         this.serviceName = petUtility.getUtilityName();
-        this.description = new String(petUtility.getDescription());
+        this.description =petUtility.getDescription();
         this.price = petUtility.getPrice();
         //#T001 - currency change is needed
     }

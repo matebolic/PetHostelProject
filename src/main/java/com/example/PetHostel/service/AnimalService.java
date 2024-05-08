@@ -33,10 +33,6 @@ public class AnimalService {
         return animalRepository.findByPetNameIgnoreCase(petName);
     }
 
-    public List<Animal> findByDates(LocalDateTime searchedDateTime) {
-        return animalRepository.findByDates(searchedDateTime);
-    }
-
     public List<Animal> findByOwnerId(Long id) {
         return animalRepository.findByOwnerId(id);
     }

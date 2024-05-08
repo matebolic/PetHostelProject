@@ -95,7 +95,6 @@ public class Animal {
             animal.age = this.age;
             animal.gender = this.gender;
             animal.isNeutered = this.isNeutered;
-//            animal.petCharacter = this.petCharacter;
             animal.specialNeeds = this.specialNeeds;
             animal.pictureURL = this.pictureURL;
             return animal;
