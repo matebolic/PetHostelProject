@@ -36,15 +36,22 @@ public class AnimalController {
         return animalService.findById(id);
     }
 
+
     @GetMapping("/findByName")
     public List<Animal> findByPetNameIgnoreCase(String petName) {
         return animalService.findByPetNameIgnoreCase(petName);
     }
 
-    @GetMapping("/findByOwnerId/{id}")
-    public List<Animal> findByOwnerId(@PathVariable Long id) {
-        return animalService.findByOwnerId(id);
-    }
+//    @GetMapping("/findByOwnerId/{id}")
+//    public List<Animal> findByOwnerId(@PathVariable Long id) {
+//        return animalService.findByOwnerId(id);
+//    }
+
+//    @GetMapping("/findByPetOwnerId/{id}")
+//    public List<Animal> findByOwner_Id(@PathVariable Long id) {
+//        return animalService.findByPetOwner_Id(id);
+//    }
+
 
     @GetMapping("/findByOwnerFullName/{fullName}")
     public List<Animal> findByTheOwnerFullName(@PathVariable String fullName) {

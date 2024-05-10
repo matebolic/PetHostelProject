@@ -14,8 +14,12 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
     List<Animal> findByPetNameIgnoreCase(String petName);
 
-    @Query("SELECT a FROM Animal a WHERE a.pet_owner_id = :ownerId")
-    List<Animal> findByOwnerId(@Param("ownerId") Long id);
+//    @Query("SELECT a FROM Animal a WHERE a.pet_owner_id = :ownerId")
+//    List<Animal> findByOwnerId(@Param("ownerId") Long id);
+
+//    List<Animal> findByPetOwner_Id(@Param("ownerId") Long id);
+
+
 
     @Query("SELECT a FROM Animal a JOIN PetOwner o WHERE CONCAT(o.lastName, ' ', o.firstName) = :fullName")
     List<Animal> findByTheOwnerFullName(@Param("fullName") String fullName);

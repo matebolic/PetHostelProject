@@ -33,17 +33,21 @@ public class AnimalService {
         return animalRepository.findByPetNameIgnoreCase(petName);
     }
 
-    public List<Animal> findByOwnerId(Long id) {
-        return animalRepository.findByOwnerId(id);
-    }
+//    public List<Animal> findByOwnerId(Long id) {
+//        return animalRepository.findByOwnerId(id);
+//}
 
-    public List<Animal> findByTheOwnerFullName(String fullName) {
-        return animalRepository.findByTheOwnerFullName(fullName);
-    }
+/*public List<Animal> findByPetOwner_Id(Long id) {
+    return animalRepository.findByPetOwner_Id(id);
+}*/
 
-    public String getAvgAgeOfAnimal() {
-        return animalRepository.findAll().stream().map(animal -> animal.getAge()).mapToInt(a -> a).summaryStatistics().toString();
-    }
+public List<Animal> findByTheOwnerFullName(String fullName) {
+    return animalRepository.findByTheOwnerFullName(fullName);
+}
+
+public String getAvgAgeOfAnimal() {
+    return animalRepository.findAll().stream().map(animal -> animal.getAge()).mapToInt(a -> a).summaryStatistics().toString();
+}
 
 
 }

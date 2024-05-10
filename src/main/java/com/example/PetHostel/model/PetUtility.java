@@ -3,6 +3,7 @@ package com.example.PetHostel.model;
 import com.example.PetHostel.modelFromEnum.Currency;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.LocalDate;
