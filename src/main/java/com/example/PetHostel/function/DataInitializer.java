@@ -7,24 +7,23 @@ import com.example.PetHostel.model.Reservation;
 import com.example.PetHostel.modelFromEnum.Currency;
 import com.example.PetHostel.modelFromEnum.Gender;
 import com.example.PetHostel.repository.*;
-import com.example.PetHostel.service.PetUtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
+@Component
+public class DataInitializer {
 
-public class Initializer {
+    private final PetUtilityRepository petUtilityRepository;
+    private final PetOwnerRepository petOwnerRepository;
+    private final AnimalRepository animalRepository;
+    private final ReservationRepository reservationRepository;
 
     @Autowired
-    PetUtilityRepository petUtilityRepository;
-    @Autowired
-    PetOwnerRepository petOwnerRepository;
-    @Autowired
-    AnimalRepository animalRepository;
-    @Autowired
-    ReservationRepository reservationRepository;
-
-    public Initializer(PetOwnerRepository petOwnerRepository, AnimalRepository animalRepository, ReservationRepository reservationRepository, PetServicesRepository petServicesRepository, PetUtilityRepository petUtilityRepository) {
+    public DataInitializer(PetUtilityRepository petUtilityRepository, PetOwnerRepository petOwnerRepository, AnimalRepository animalRepository, ReservationRepository reservationRepository) {
+        this.petUtilityRepository = petUtilityRepository;
+        this.petOwnerRepository = petOwnerRepository;
+        this.animalRepository = animalRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     public void saveTestEntities() {
@@ -46,8 +45,8 @@ public class Initializer {
 
         }
 
-        Reservation reservation01 = new Reservation(petOwner_mb, "2024-01-22", "18:00", "2024-02-03", "8:00");
-        Reservation reservation02 = new Reservation(petOwner_mb, "2024-03-22", "14:00", "2024-04-07", "9:00");
+        Reservation reservation01 = new Reservation(petOwner_mb, "2024-01-22", "18:00", "2024-02-03", "08:00");
+        Reservation reservation02 = new Reservation(petOwner_mb, "2024-03-22", "14:00", "2024-04-07", "09:00");
         reservationRepository.save(reservation01);
         reservationRepository.save(reservation02);
     }

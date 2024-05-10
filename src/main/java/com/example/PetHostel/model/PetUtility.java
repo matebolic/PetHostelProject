@@ -21,7 +21,7 @@ import java.util.List;
 public class PetUtility {
 
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
-    public static LocalTime daycareStartingTime = LocalTime.parse("8:00", formatter);
+    public static LocalTime daycareStartingTime = LocalTime.parse("08:00", formatter);
     public static LocalTime boardingStartingTime = LocalTime.parse("20:00", formatter);
 
     @Id
@@ -30,6 +30,7 @@ public class PetUtility {
 
     private String utilityName;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Enumerated(EnumType.STRING)
