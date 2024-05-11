@@ -20,7 +20,7 @@ import java.util.List;
 
 public class PetUtility {
 
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
     public static LocalTime daycareStartingTime = LocalTime.parse("08:00", formatter);
     public static LocalTime boardingStartingTime = LocalTime.parse("20:00", formatter);
 

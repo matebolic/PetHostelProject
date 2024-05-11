@@ -16,7 +16,7 @@ import java.util.List;
 public class ReservationService {
 
     @Autowired
-    ReservationRepository reservationRepository;
+    private ReservationRepository reservationRepository;
 
     public Reservation save(Reservation reservation) {
         return reservationRepository.save(reservation);

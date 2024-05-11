@@ -18,7 +18,7 @@ public class DataInitializer {
     private final AnimalRepository animalRepository;
     private final ReservationRepository reservationRepository;
 
-    @Autowired
+//    @Autowired    - not necessary, redundant
     public DataInitializer(PetUtilityRepository petUtilityRepository, PetOwnerRepository petOwnerRepository, AnimalRepository animalRepository, ReservationRepository reservationRepository) {
         this.petUtilityRepository = petUtilityRepository;
         this.petOwnerRepository = petOwnerRepository;
