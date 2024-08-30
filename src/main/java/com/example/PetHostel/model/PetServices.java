@@ -20,13 +20,17 @@ public class PetServices {
 
     private String serviceName;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    private Integer price;
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
     /*
     #T001 - currency change is needed according to the users default/choosen currency
      it has to be converted from the base currency
      */
+
+    private Integer price;
 
     @ManyToOne
     @JoinColumn(name = "reservation_id")
@@ -36,7 +40,9 @@ public class PetServices {
         this.serviceName = petUtility.getUtilityName();
         this.description = petUtility.getDescription();
         this.price = petUtility.getPrice();
+        this.currency = petUtility.getCurrency();
         //#T001 - currency change is needed
     }
+
 
 }

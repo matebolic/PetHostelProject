@@ -16,9 +16,11 @@ public enum Currency {
         this.exchangeRateToHuf = exchangeRateToHuf;
     }
 
-    private Double exchangeRateToHuf;
     //temporary: later MNB Soap API will be used for getting real-time exchange rates
     private String name;
+    private Double exchangeRateToHuf;
 
-
+    public static double convertCurrency(Currency input, Currency output) {
+        return input.exchangeRateToHuf/output.exchangeRateToHuf;
+    }
 }

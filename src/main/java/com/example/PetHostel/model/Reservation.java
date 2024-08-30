@@ -1,5 +1,6 @@
 package com.example.PetHostel.model;
 
+import com.example.PetHostel.modelFromEnum.Currency;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 
 @Getter
@@ -49,7 +51,7 @@ public class Reservation {
     @OneToMany(mappedBy = "reservation")
     private List<PetServices> services;
 
-    private Integer price;
+    private Integer priceOfReservation;
 
     @JsonIgnore
     private List<Long> animalsPerReservationsList = new ArrayList<>();
@@ -65,14 +67,20 @@ public class Reservation {
         this.finishingDateTime = LocalDateTime.of(this.finishingDate, this.finishingTime);
     }
 
-    public void addAnimal(Animal animal) {
-        this.animalsPerReservationsList.add(animal.getId());
-    }
-    //to avoid creating multiple animal objects
+    public Reservation calculateTotalPriceByReservation() {
+        Currency currencyToConvert = this.petOwner.getCurrency();
 
-    public Double generatePrice() {
-        return null;
-        //setter?-----------------------------------------------------
+        Double priceDouble = this.services.stream()
+                .map(service -> service.getPrice() * Currency.convertCurrency(service.getCurrency(), currencyToConvert))
+                .reduce(0.0, (a, b) -> a + b);
+
+        this.setPriceOfReservation(priceDouble.intValue());
+        return this;
+    }
+
+    public Reservation calculateMembershipPoints() {
+        this.getPetOwner().setMembershipPoints(this.petOwner.getMembershipPoints() + 1);
+        return this;
     }
 
 
