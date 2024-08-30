@@ -103,6 +103,10 @@ public class Animal {
 
     //randomData
 
+    /**
+     *Differs from the addDetailedInfo by the petname, here that is also a random property
+     * @return An animal object with random - name, age, gender, state of sterilization
+     */
     public Animal randomDetailedInfo() {
         this.setPetName(randomizePetName());
         this.setAge(randomizeAge());
