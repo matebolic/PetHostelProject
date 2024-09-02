@@ -1,5 +1,6 @@
 package com.example.PetHostel.model;
 
+import com.example.PetHostel.function.DataInitializer;
 import com.example.PetHostel.modelFromEnum.Currency;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -53,6 +55,8 @@ public class Reservation {
 
     private Integer priceOfReservation;
 
+    private Long duration;
+
     @JsonIgnore
     private List<Long> animalsPerReservationsList = new ArrayList<>();
     //mapped by id!
@@ -65,6 +69,7 @@ public class Reservation {
         this.finishingTime = LocalTime.parse(finishingTimeStr);
         this.startingDateTime = LocalDateTime.of(this.startingDate, this.startingTime);
         this.finishingDateTime = LocalDateTime.of(this.finishingDate, this.finishingTime);
+        this.duration = Duration.between(startingDateTime, finishingDateTime).toMinutes();
     }
 
     public Reservation calculateTotalPriceByReservation() {
@@ -82,6 +87,15 @@ public class Reservation {
         this.getPetOwner().setMembershipPoints(this.petOwner.getMembershipPoints() + 1);
         return this;
     }
+
+//    private List<PetServices> calculateServicesByElapsedTime() {
+//        long v1, v2;
+//        //v1: 0-12 h
+//        //v2 12-24 h
+//        v1 = this.duration % (24 * 60);
+//        v2 = (this.duration - v1 * 60) % 60;
+//        this.services.add(new PetServices())
+//    }
 
 
 }

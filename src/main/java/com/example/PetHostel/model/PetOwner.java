@@ -36,6 +36,8 @@ public class PetOwner {
 
     private Currency currency;
 
+    private Double balance;
+
     @JsonIgnore
     @OneToMany(mappedBy = "petOwner")
     private List<Reservation> reservations;
@@ -49,13 +51,14 @@ public class PetOwner {
 //    private Double actualLocationX;
 //    private Double actualLocationY;
 
-    public PetOwner(String firstName, String lastName, String dateString, Currency currency) {
+    public PetOwner(String firstName, String lastName, String dateString, Currency currency, Double balance) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateString);
         this.membershipPoints = 0;  //initial value
         this.membership = Membership.NONE;
         this.currency = currency;
+        this.balance = balance;
     }
 
     public PetOwner calculateMembership() {

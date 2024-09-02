@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner info</title>
+</head>
+
+
+
+<body>
+
+    <section>
+        <h1>Your user account:</h1>
+
+        <table th:each="animal : ${myAnimals}">
+            <tr>
+                <td>ID:</td><td>OW-243242</td>
+            </tr> 
+            <tr>
+                <td>Username:</td><td>ktd003</td>
+            </tr>
+            <tr>
+                <td>Firstname:</td><td>Georg</td>
+            </tr>
+            <tr>
+                <td>Lastname:</td><td>Azurro</td>
+            </tr>
+            <tr>
+                <td>Date of birth:</td><td>1981.03.15.</td>
+            </tr>
+            <tr>
+                <td>Membership:</td><td>Premium member</td>
+            </tr>
+            <tr>
+                <td>Membership points:</td><td>14</td>
+            </tr>
+            <tr>
+                <td>Currency:</td><td>HUF</td>
+            </tr>    
+            <tr>
+                <td>Balance:</td><td>-4980</td>
+            </tr>
+            <tr>
+                <td>Animals:</td><td>
+                    <span>Frici</span>,
+                    <span>Cindorello</span>,
+                    <span>CatboySlim</span>,
+                </td>
+            </tr>
+            <tr>
+                <td>Reservations:</td>
+                <td>
+                    <div>2019.05.12.</div>
+                    <div>2019.05.18.</div>
+                    <div>2021.09.02.</div>
+                </td>
+            </tr>
+       </table>
+    
+    </section>
+
+</body>
+
+</html>

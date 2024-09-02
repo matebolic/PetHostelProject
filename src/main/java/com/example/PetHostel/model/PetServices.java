@@ -32,6 +32,8 @@ public class PetServices {
 
     private Integer price;
 
+    private Integer numberOfServicesPerReservation;
+
     @ManyToOne
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
@@ -41,7 +43,6 @@ public class PetServices {
         this.description = petUtility.getDescription();
         this.price = petUtility.getPrice();
         this.currency = petUtility.getCurrency();
-        //#T001 - currency change is needed
     }
 
 

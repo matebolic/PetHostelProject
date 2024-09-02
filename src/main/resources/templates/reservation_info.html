@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation info</title>
+</head>
+
+
+
+<body>
+
+    <section>
+        
+        <table th:each="animal : ${myAnimals}">
+             </tr>
+                <td>Owner:<td>Kis Pista</td>
+            </tr>
+            </tr>
+                <td>Cats:<td>Caty, Caty-B</td>
+            </tr>  
+            </tr>
+                <td>Arrival:<td>2024.03.18. 18:00</td>
+            </tr>
+            </tr>
+                <td>Departure:<td>2024.03.20. 20:00</td>
+            </tr>
+            </tr>
+                <td>Duration:<td>72:16</td>
+            <tr>
+                <td>Services:</td><td th:each="service : ${services}">Daycare [500 Ft]</td>
+            </tr>
+            <tr>
+                <td>Total price:</td><td>8500 Ft</td>
+            </tr>
+        </table>
+    
+    </section>
+
+</body>
+
+</html>

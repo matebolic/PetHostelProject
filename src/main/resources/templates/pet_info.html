@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet info</title>
+</head>
+
+
+
+<body>
+
+    <section>
+        <h1>Your cats' data:</h1>
+
+        <table th:each="animal : ${myAnimals}">
+        </tr><tr>
+            <td>Owner's name</td><td>Kovács Kálmán Tódor</td>
+        </tr>
+            <tr>
+                <td>Name:</td><td>Cirmi</td>
+            </tr>
+            <tr>
+                <td>ID:</td><td>C-243242</td>
+            </tr>
+            <tr>
+                <td>Age:</td><td>11</td>
+            </tr>
+            <tr>
+                <td>Gender:</td><td>male</td>
+            </tr>
+            <tr>
+                <td>Neutered</td><td>yes</td>
+            </tr>
+            <tr>
+                <td>Special needs</td><td>likes to play with a ball of yarn</td>
+            </tr>
+            <tr><td><img src="..//static/images/pexels-flowerstofox-1870302.jpg" height="200 px" alt="cirmike"></td></tr>
+        </table>
+    
+    </section>
+
+</body>
+
+</html>
