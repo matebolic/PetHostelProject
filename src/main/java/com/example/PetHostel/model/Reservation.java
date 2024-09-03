@@ -76,19 +76,14 @@ public class Reservation {
         Currency currencyToConvert = this.petOwner.getCurrency();
 
         Double priceDouble = this.services.stream()
-                .map(service -> service.getPrice() * Currency.convertCurrency(service.getCurrency(), currencyToConvert))
+                .map(service -> service.getPrice() * service.getNumberOfServicesPerReservation() * Currency.convertCurrency(service.getCurrency(), currencyToConvert))
                 .reduce(0.0, (a, b) -> a + b);
 
         this.setPriceOfReservation(priceDouble.intValue());
         return this;
     }
 
-    public Reservation calculateMembershipPoints() {
-        this.getPetOwner().setMembershipPoints(this.petOwner.getMembershipPoints() + 1);
-        return this;
-    }
-
-//    private List<PetServices> calculateServicesByElapsedTime() {
+    //    private List<PetServices> calculateServicesByElapsedTime() {
 //        long v1, v2;
 //        //v1: 0-12 h
 //        //v2 12-24 h
@@ -97,5 +92,10 @@ public class Reservation {
 //        this.services.add(new PetServices())
 //    }
 
+
+    public Reservation calculateMembershipPoints() {
+        this.getPetOwner().setMembershipPoints(this.petOwner.getMembershipPoints() + 1);
+        return this;
+    }
 
 }

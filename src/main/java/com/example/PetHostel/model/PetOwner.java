@@ -29,6 +29,12 @@ public class PetOwner {
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
     @Enumerated(EnumType.STRING)
     private Membership membership;
 
@@ -45,11 +51,6 @@ public class PetOwner {
     @JsonIgnore
     @OneToMany(mappedBy = "petOwner")
     private List<Animal> animals;
-
-
-//    private Long accountBalance;
-//    private Double actualLocationX;
-//    private Double actualLocationY;
 
     public PetOwner(String firstName, String lastName, String dateString, Currency currency, Double balance) {
         this.firstName = firstName;
