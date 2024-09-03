@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Date Range Picker CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-md">
+        <form th:action="@{/submit}" method="post">
+            <div class="form-group">
+                <label for="daterange">Select Date and Time Range:</label>
+                <input type="text" id="daterange" name="daterange" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <div class="container-md">
+        <div class="row px-1 mx-1 mt-1 justify-content-center">
+            <p class="fs-3 bg-warning rounded text-start col-md-10 shadow">Make an appointment for your pet!</p>
+        </div>
+
+        <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
+            th:action="@{/web/pethostel/pet/add}" method="post" th:object="${pet}">
+            <div class="col-md-4">
+                <label for="petname" class="form-label">Petname</label>
+                <input type="text" class="form-control" id="petname" th:field="*{petName}"
+                    placeholder="just lowercase letters">
+            </div>
+            <div class="col-md-4">
+                <label for="age" class="form-label">Age</label>
+                <input type="text" class="form-control" id="age" th:field="*{age}" placeholder="e.g.: 12">
+            </div>
+            <div class="col-md-4">
+                <label for="genderSelector" class="form-label">Gender</label>
+                    <select class="form-select" id="genderSelector" name="genderStr">
+                    <option selected>...</option>
+                    <th:block th:each="gender: ${genders}">
+                        <option th:value="${gender.name}" th:text="${gender.name}">male</option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label for="notes" class="form-label">Special neeeds</label>
+                <input type="text" class="form-control" id="notes" th:field="*{specialNeeds}"
+                    placeholder="e.g.: Cirmi likes to eat antiallergene food only...">
+            </div>
+            <div class="col-md-12">
+                <label for="img" class="form-label">Image</label>
+                <input type="text" class="form-control" id="img" th:field="*{pictureURL}" placeholder="use a link please, e.g.: https://img.freepik.com/premium-photo/close-up-cat_1048944-1949595.jpg?w=740 ">
+            </div>
+            <div>
+                <input id="isNeutered" type="checkbox" name="isNeutered">
+                <label for="isNeutered">Is neutered?</label>               
+            </div>
+
+            <div class="col-md-2">
+                <button type=" submit" class="btn btn-success">Register</button>
+            </div>
+            <div class="col-md-2">
+                <button type="reset" class="btn btn-danger">Reset, maybe later</button>
+            </div>
+        </form>
+    </div>
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Moment.js (required by daterangepicker) -->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+
+<!-- Bootstrap Date Range Picker JS -->
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#daterange').daterangepicker({
+            timePicker: true,
+            timePicker24Hour: true, // Use 24-hour format
+            timePickerIncrement: 15, // Increment of minutes in time selection
+            locale: {
+                format: 'YYYY-MM-DD HH:mm'
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>
