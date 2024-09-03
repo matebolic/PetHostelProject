@@ -23,16 +23,15 @@
 </head>
 
 <body>
-
-    <div class="container-md">
+    <!-- 
         <form th:action="@{/submit}" method="post">
             <div class="form-group">
-                <label for="daterange">Select Date and Time Range:</label>
+                <label for="daterange">Select the time of arrival and departure</label>
                 <input type="text" id="daterange" name="daterange" class="form-control"/>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </div>
+     -->
 
     <div class="container-md">
         <div class="row px-1 mx-1 mt-1 justify-content-center">
@@ -41,47 +40,38 @@
 
         <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
             th:action="@{/web/pethostel/pet/add}" method="post" th:object="${pet}">
-            <div class="col-md-4">
-                <label for="petname" class="form-label">Petname</label>
-                <input type="text" class="form-control" id="petname" th:field="*{petName}"
-                    placeholder="just lowercase letters">
-            </div>
-            <div class="col-md-4">
-                <label for="age" class="form-label">Age</label>
-                <input type="text" class="form-control" id="age" th:field="*{age}" placeholder="e.g.: 12">
-            </div>
-            <div class="col-md-4">
-                <label for="genderSelector" class="form-label">Gender</label>
-                    <select class="form-select" id="genderSelector" name="genderStr">
-                    <option selected>...</option>
-                    <th:block th:each="gender: ${genders}">
-                        <option th:value="${gender.name}" th:text="${gender.name}">male</option>
-                    </th:block>
-                </select>
-            </div>
-            <div class="col-md-12">
-                <label for="notes" class="form-label">Special neeeds</label>
-                <input type="text" class="form-control" id="notes" th:field="*{specialNeeds}"
-                    placeholder="e.g.: Cirmi likes to eat antiallergene food only...">
-            </div>
-            <div class="col-md-12">
-                <label for="img" class="form-label">Image</label>
-                <input type="text" class="form-control" id="img" th:field="*{pictureURL}" placeholder="use a link please, e.g.: https://img.freepik.com/premium-photo/close-up-cat_1048944-1949595.jpg?w=740 ">
-            </div>
-            <div>
-                <input id="isNeutered" type="checkbox" name="isNeutered">
-                <label for="isNeutered">Is neutered?</label>               
+        <!-- 
+        <form th:action="@{/submit}" method="post">
+        -->
+
+            <div class="form-group">
+                <label for="daterange">Select the time of arrival and departure</label>
+                <input type="text" id="daterange" name="daterange" class="form-control"/>
             </div>
 
+            <div class="">
+                <label for="isFoodTaken">Do you want us to feed you pets with our petfood?</label> 
+                <input id="isFoodTaken" type="checkbox" name="isFoodTaken">
+            </div>
+
+            <div>
+                <p>For which pets do you want to book?</p>
+                <th:block th:each="animal : ${myAnimals}">
+                    <label th:for="${animal.name}" th:text="${animal.name}">Cirmi</label>
+                    <input type="checkbox" id="${animal.name}" th:name="animals" th:value="${animal.name}">
+                </th:block>
+                
+                                      
+            </div>
+               
             <div class="col-md-2">
-                <button type=" submit" class="btn btn-success">Register</button>
+                <button type=" submit" class="btn btn-success">Reserve</button>
             </div>
             <div class="col-md-2">
                 <button type="reset" class="btn btn-danger">Reset, maybe later</button>
             </div>
         </form>
     </div>
-
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

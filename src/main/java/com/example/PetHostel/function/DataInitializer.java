@@ -28,8 +28,8 @@ public class DataInitializer {
 
     public void saveTestEntities() {
 
-        PetOwner petOwner_mb = new PetOwner("Matthieu", "Blaise", "1981-10-11", Currency.HUF, 0.00);
-        PetOwner petOwner_mtb = new PetOwner("Barbara", "Swenson", "1981-06-27", Currency.HUF, 0.00);
+        PetOwner petOwner_mb = new PetOwner("Matthieu", "Blaise", "1981-10-11", Currency.HUF, "balmate@g.hu", "pw");
+        PetOwner petOwner_mtb = new PetOwner("Barbara", "Swenson", "1981-06-27", Currency.HUF, "trub@g.com", "pw2");
         petOwnerRepository.save(petOwner_mb);
         petOwnerRepository.save(petOwner_mtb);
 

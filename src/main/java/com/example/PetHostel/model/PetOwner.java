@@ -52,13 +52,25 @@ public class PetOwner {
     @OneToMany(mappedBy = "petOwner")
     private List<Animal> animals;
 
+    public PetOwner(String firstName, String lastName, String dateString, Currency currency, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = LocalDate.parse(dateString);
+        this.currency = currency;
+        this.email = email;
+        this.password = password;
+        this.membershipPoints = 0;  //initial value
+        this.membership = Membership.NONE;
+        this.balance = 0.00;
+    }
+
     public PetOwner(String firstName, String lastName, String dateString, Currency currency, Double balance) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateString);
+        this.currency = currency;
         this.membershipPoints = 0;  //initial value
         this.membership = Membership.NONE;
-        this.currency = currency;
         this.balance = balance;
     }
 
