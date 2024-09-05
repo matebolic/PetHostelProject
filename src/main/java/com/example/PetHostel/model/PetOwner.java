@@ -11,7 +11,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
 @Entity
 public class PetOwner {
@@ -21,12 +20,14 @@ public class PetOwner {
     private Long id;
 
     @Column(nullable = false, length = 30)
+    private String userName;
+
+    @Column(nullable = false, length = 30)
     private String firstName;
 
     @Column(nullable = false, length = 30)
     private String lastName;
 
-    @Column(nullable = false)
     private LocalDate dateOfBirth;
 
     @Column(nullable = false)
@@ -52,26 +53,36 @@ public class PetOwner {
     @OneToMany(mappedBy = "petOwner")
     private List<Animal> animals;
 
-    public PetOwner(String firstName, String lastName, String dateString, Currency currency, String email, String password) {
+    public PetOwner() {
+        this.balance = 0.00;
+        this.membershipPoints = 0;  //initial value
+        this.membership = Membership.NONE;
+    }
+
+    public PetOwner(String userName, String firstName, String lastName, String dateString, Currency currency, String email, String password) {
+        this.balance = 0.00;
+        this.membershipPoints = 0;  //initial value
+        this.membership = Membership.NONE;
+
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateString);
         this.currency = currency;
         this.email = email;
         this.password = password;
-        this.membershipPoints = 0;  //initial value
-        this.membership = Membership.NONE;
-        this.balance = 0.00;
     }
 
-    public PetOwner(String firstName, String lastName, String dateString, Currency currency, Double balance) {
+    public PetOwner(String userName, String firstName, String lastName, String dateString, Currency currency, Double balance) {
+        this.balance = 0.00;
+        this.membershipPoints = 0;  //initial value
+        this.membership = Membership.NONE;
+
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = LocalDate.parse(dateString);
         this.currency = currency;
-        this.membershipPoints = 0;  //initial value
-        this.membership = Membership.NONE;
-        this.balance = balance;
     }
 
     public PetOwner calculateMembership() {

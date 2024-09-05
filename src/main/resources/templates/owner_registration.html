@@ -29,23 +29,24 @@
         </div>
 
         <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-            th:action="@{/web/pethostel/user/add}" method="post" th:object="${user}">
+            th:action="@{/th/pethostel/user/add}" method="post" th:object="${user}">
             <div class="col-md-4">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" th:field="*{username}"
+                <input type="text" class="form-control" id="username" th:field="*{userName}"
                     placeholder="starts with letter, just lowercase letters, '-', '_', or number">
             </div>
             <div class="col-md-4">
                 <label for="firstname" class="form-label">Firstname</label>
-                <input type="text" class="form-control" id="firstname" th:field="*{firstname}">
+                <input type="text" class="form-control" id="firstname" th:field="*{firstName}">
             </div>
             <div class="col-md-4">
                 <label for="lastname" class="form-label">Lastname</label>
-                <input type="text" class="form-control" id="lastname" th:field="*{lastname}">
+                <input type="text" class="form-control" id="lastname" th:field="*{lastName}">
             </div>
             <div class="col-md-4">
                 <label for="dateOfBirth" class="form-label">Date of birth</label>
-                <input type="text" class="form-control" id="dateOfBirth" th:field="*{dateOfBirth}">
+                <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirthString" th:value="${dateOfBirthString}" value="1956.10.23." min="1900.01.01" max="2024.01.01.">
+                
             </div>
             <div class="col-md-4">
                 <label for="email" class="form-label">Email</label>
@@ -57,10 +58,11 @@
             </div>
             <div class="col-md-12">
                 <label for="currencySelector" class="form-label">Currency</label>
-                    <select class="form-select" id="currencySelector" name="currencyStr">
-                    <option selected>...</option>
+                    <select class="form-select" id="currencySelector" th:field="*{currency}">
+                        <!--name="currencyStr"-->
+                    <option value="" disabled selected>Select a currency</option>
                     <th:block th:each="currency : ${currencies}">
-                        <option th:value="${currency.name}" th:text="${currency.name}">XYZ</option>
+                        <option th:value="${currency}" th:text="${currency.name}">XYZ</option>
                     </th:block>
                 </select>
             </div>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>All the onwers - info</title>
+    <title>Owner info</title>
 </head>
 
 
@@ -10,8 +10,10 @@
 <body>
 
     <section>
-       
-        <table>
+        <h1>All owners' accounts:</h1>
+
+<th:block th:each="user : ${owners}">
+        <table >
             <tr>
                 <td>ID:</td><td th:text="${user.id}">OW-243242</td>
             </tr> 
@@ -51,12 +53,15 @@
             </tr>
             <tr>
                 <td>Reservations:</td>
-                <th:block th:each="reservation : ${user.reservations}">
-                    <div th:text="${reservation.startingDateTime}">2017-01-13T17:09:42.411</div>
-                </th:block>
+                <td>
+                    <th:block th:each="reservation : ${user.reservations}">
+                        <div th:text="${reservation.startingDateTime}">2017-01-13T17:09:42.411</div>
+                    </th:block>
                 </td>
             </tr>
        </table>
+       <hr>
+    </th:block>
     
     </section>
 
