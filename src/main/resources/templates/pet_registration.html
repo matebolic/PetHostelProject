@@ -29,10 +29,10 @@
         </div>
 
         <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-            th:action="@{/web/pethostel/pet/add}" method="post" th:object="${pet}">
+            th:action="@{/web/pethostel/pet/add}" method="post" th:object="${animal}">
             <div class="col-md-4">
                 <label for="petName" class="form-label">Petname</label>
-                <input type="text" class="form-control" id="petName" th:field="${petName}"
+                <input type="text" class="form-control" id="petName" th:field="*{petName}"
                     placeholder="e.g.: Caty">
 
                 <!-- the hidden username-->
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-4">
                 <label for="age" class="form-label">Age: <span id="rangeValue" ></span></label>
-                <input type="range" class="form-control" id="age" th:field="*{age}" min="0" max="25" value="10">
+                <input type="range" class="form-control" id="age" th:field="*{age}" min="0" max="25">
             </div>
             <div class="col-md-4">
                 <label for="genderSelector" class="form-label">Gender</label>
@@ -53,7 +53,7 @@
                 </select>
             </div>
             <div class="col-md-12">
-                <label for="notes" class="form-label">Special neeeds</label>
+                <label for="notes" class="form-label">Special neeeds:</label>
                 <input type="text" class="form-control" id="notes" th:field="*{specialNeeds}"
                     placeholder="e.g.: Cirmi likes to eat antiallergene food only...">
             </div>
@@ -67,7 +67,7 @@
             </div>
 
             <div class="col-md-2">
-                <button type=" submit" class="btn btn-success">Register</button>
+                <button type="submit" class="btn btn-success">Register</button>
             </div>
             <div class="col-md-2">
                 <button type="reset" class="btn btn-danger">Reset, maybe later</button>

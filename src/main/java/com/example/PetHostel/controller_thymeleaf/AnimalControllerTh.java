@@ -35,12 +35,14 @@ public class AnimalControllerTh {
 
     @PostMapping("/add")
     public String acceptForm(@ModelAttribute("animal") Animal animal, @RequestParam("hiddenUserName") String userName) {
+        System.out.println("------------------------------------------" + userName);
         animal.setPetOwner(petOwnerService.findByUserName(userName));
+        System.out.println(animal.getPetOwner().getUserName());
         animalService.save(animal);
-        return "animal_info";
+        return "pet_info";
     }
 
-    @GetMapping("/findByPetName/{petName}")
+    @PostMapping("/findByPetName/{petName}")
     public String findByPetName(@PathVariable String petName, Model model) {
         model.addAttribute("animal", animalService.findByPetName(petName));
         return "pet_info";
