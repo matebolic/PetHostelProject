@@ -20,6 +20,13 @@ public class PetOwnerControllerTh {
     @Autowired
     PetOwnerService petOwnerService;
 
+    @GetMapping("/findByUserName/{username}")
+    public String findByUserName(@PathVariable String username, Model model) {
+        model.addAttribute("user", petOwnerService.findByUserName(username));
+        return "owner_info";
+    }
+
+
     @GetMapping("/add")
     public String getForm(Model model) {
         PetOwner petOwner = new PetOwner();

@@ -10,7 +10,10 @@ import java.util.List;
 
 public interface PetOwnerRepository extends JpaRepository<PetOwner, Long> {
 
+    PetOwner findByUserName(String username);
+
     @Query("SELECT o FROM PetOwner o WHERE CONCAT(o.lastName, ' ', o.firstName) = :fullName")
     public List<PetOwner> findByFullName(String fullName);
+
 
 }

@@ -33,7 +33,7 @@ public class DataInitializer {
         petOwnerRepository.save(petOwner_mb);
         petOwnerRepository.save(petOwner_mtb);
 
-        Animal cirmir = new Animal.AnimalBuilder().addBasicInfo(petOwner_mb, "Cirmir").addDetailedInfo(1, Gender.MALE, false).build();
+        Animal cirmir = new Animal.AnimalBuilder().addBasicInfo(petOwner_mb, "Cirmir").addDetailedInfo(1, Gender.MALE, true).addOptionalInfo("likes whiskas", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/1200px-Cat_August_2010-4.jpg").build();
         animalRepository.save(cirmir);
 
         for (int i = 0; i < 10; i++) {

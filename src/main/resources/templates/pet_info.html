@@ -10,31 +10,32 @@
 <body>
 
     <section>
-        <h1>Your cats' data:</h1>
-
-        <table th:each="animal : ${myAnimals}">
+               
+        <table>
         </tr><tr>
-            <td>Owner's name</td><td>Kovács Kálmán Tódor</td>
+            <td>Owner's name:</td><td th:text="${animal.petOwner.firstName + ' ' + animal.petOwner.lastName}">Kovács Kálmán Tódor</td>
         </tr>
             <tr>
-                <td>Name:</td><td>Cirmi</td>
+                <td>Name:</td><td th:text="${animal.petName}">Cirmi</td>
             </tr>
             <tr>
-                <td>ID:</td><td>C-243242</td>
+                <td>ID:</td><td th:text="${animal.id}">C-243242</td>
             </tr>
             <tr>
-                <td>Age:</td><td>11</td>
+                <td>Age:</td><td th:text="${animal.age}">11</td>
             </tr>
             <tr>
-                <td>Gender:</td><td>male</td>
+                <td>Gender:</td><td th:text="${animal.gender}">male</td>
+            </tr>
+           
+            <tr>
+                <td>Neutered:</td><td th:text="${animal.isNeutered ? 'yes' : 'no'}">perhaps</td>
             </tr>
             <tr>
-                <td>Neutered</td><td>yes</td>
+                <td>Special needs:</td><td th:text="${animal.specialNeeds}">likes to play with a ball of yarn</td>
             </tr>
-            <tr>
-                <td>Special needs</td><td>likes to play with a ball of yarn</td>
-            </tr>
-            <tr><td><img src="..//static/images/pexels-flowerstofox-1870302.jpg" height="200 px" alt="cirmike"></td></tr>
+            <tr><td><img th:src="${animal.pictureURL}" height="200 px" th:alt="${animal.petName}"
+                 onerror="this.src='https://uxwing.com/wp-content/themes/uxwing/download/animals-and-birds/cat-icon.png';"></td></tr>
         </table>
     
     </section>

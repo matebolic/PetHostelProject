@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>All the onwers - info</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        h4 {
+            padding-top: 20px;
+        }
+
+    </style>
 </head>
-
-
 
 <body>
 
@@ -51,15 +62,38 @@
             </tr>
             <tr>
                 <td>Reservations:</td>
-                <th:block th:each="reservation : ${user.reservations}">
-                    <div th:text="${reservation.startingDateTime}">2017-01-13T17:09:42.411</div>
-                </th:block>
+                <td>
+                    <th:block th:each="reservation : ${user.reservations}">
+                        <div th:text="${reservation.startingDateTime}">2017-01-13T17:09:42.411</div>
+                    </th:block>
                 </td>
             </tr>
        </table>
+
+
+       <h4>Do you want to register your cat?</h4>
+       <div>
+            <a class="btn btn-danger mt-2 btn-login text-uppercase fw-bold" href="/th/pethostel/animal/register">Please click here!"</a>
+       </div>
+
+        <div>
+            <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
+                th:action="@{/th/pethostel/animal/register}" method="post" th:object="${user}">
+
+                <button class="btn btn-danger mt-2 btn-login text-uppercase fw-bold" type="submit" name="user" th:object="${user}">
+                    Or try here, this is a button with a post method
+                </button>
+            </form>
+        </div>
+
+    </div>
+
     
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

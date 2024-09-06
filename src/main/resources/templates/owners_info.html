@@ -18,7 +18,8 @@
                 <td>ID:</td><td th:text="${user.id}">OW-243242</td>
             </tr> 
             <tr>
-                <td>Username:</td><td th:text="${user.userName}">ktd003</td>
+                <td>Username:</td><td><a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                    th:text="${user.userName}" th:href="@{'/th/pethostel/user/findByUserName/' + ${user.userName}}">ktd003</a></td>
             </tr>
             <tr>
                 <td>Firstname:</td><td th:text="${user.firstName}">Georg</td>
@@ -47,7 +48,8 @@
             <tr>
                 <td>Animals:</td><td>
                     <th:block th:each="animal : ${user.animals}">
-                        <span th:text="${animal.petName}">Frici</span>
+                        <span><a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            th:text="${animal.petName}" th:href="@{'/th/pethostel/animal/findByPetName/' + ${animal.petName}}">Frici</a></span>
                     </th:block>
                 </td>
             </tr>

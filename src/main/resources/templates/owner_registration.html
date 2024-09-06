@@ -29,7 +29,7 @@
         </div>
 
         <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-            th:action="@{/th/pethostel/user/add}" method="post" th:object="${user}">
+            th:action="@{/th/pethostel/user/register}" method="post" th:object="${user}">
             <div class="col-md-4">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" th:field="*{userName}"

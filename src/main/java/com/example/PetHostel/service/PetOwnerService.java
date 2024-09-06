@@ -41,6 +41,9 @@ public class PetOwnerService {
         return petOwnerRepository.findByFullName(fullName);
     }
 
+    public PetOwner findByUserName(String username) {
+        return petOwnerRepository.findByUserName(username);
+    }
 
     //-------------------------------------------------------------------------------//
 

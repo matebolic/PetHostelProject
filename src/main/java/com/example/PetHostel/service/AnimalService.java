@@ -5,6 +5,8 @@ import com.example.PetHostel.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,6 +21,10 @@ public class AnimalService {
 
     public Animal save(Animal animal) {
         return animalRepository.save(animal);
+    }
+
+    public Animal findByPetName(String petName) {
+        return animalRepository.findByPetName(petName);
     }
 
     public List<Animal> findAll() {
