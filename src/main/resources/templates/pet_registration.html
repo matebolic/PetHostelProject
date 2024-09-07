@@ -45,10 +45,10 @@
             </div>
             <div class="col-md-4">
                 <label for="genderSelector" class="form-label">Gender</label>
-                    <select class="form-select" id="genderSelector" name="genderStr">
-                    <option selected>...</option>
+                    <select class="form-select" id="genderSelector" name="genderStr" th:field="*{gender}">
+                    <option value="" selected disabled>...</option>
                     <th:block th:each="gender: ${genders}">
-                        <option th:value="${gender.name}" th:text="${gender.name}">male</option>
+                        <option th:value="*{gender}" th:text="${gender.name}">male</option>
                     </th:block>
                 </select>
             </div>
@@ -61,10 +61,14 @@
                 <label for="img" class="form-label">Image</label>
                 <input type="text" class="form-control" id="img" th:field="*{pictureURL}" placeholder="use a link please, e.g.: https://img.freepik.com/premium-photo/close-up-cat_1048944-1949595.jpg?w=740 ">
             </div>
+
+            <!--
             <div>
                 <input id="isNeutered" type="checkbox" name="isNeutered">
                 <label for="isNeutered">Is neutered?</label>               
             </div>
+            -->
+
 
             <div class="col-md-2">
                 <button type="submit" class="btn btn-success">Register</button>

@@ -28,7 +28,7 @@ public class AnimalControllerTh {
     public String getFormByUser(@ModelAttribute("user") PetOwner petOwner, Model model) {
         Animal animal = new Animal();
         model.addAttribute("animal", animal);
-        model.addAttribute("gender", Gender.values());
+        model.addAttribute("genders", Gender.values());
         model.addAttribute("user", petOwner);
         return "pet_registration";
     }
