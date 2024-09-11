@@ -12,7 +12,7 @@
     <section>
                
         <table>
-        </tr><tr>
+        </tr><tr th:if="${animal.petOwner != null}">
             <td>Owner's name:</td><td th:text="${animal.petOwner.firstName + ' ' + animal.petOwner.lastName}">Kovács Kálmán Tódor</td>
         </tr>
             <tr>

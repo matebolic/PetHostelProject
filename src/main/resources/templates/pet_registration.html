@@ -36,7 +36,7 @@
                     placeholder="e.g.: Caty">
 
                 <!-- the hidden username-->
-                <input type="text" name="hiddenUserName" th:value="${user.userName}"  aria-label="readonly input username" readonly th:placeholder="${user.userName}">
+                <input type="hidden" name="hiddenUserName" th:value="${user.userName}">
                 <!-- the hidden username-->
             </div>
             <div class="col-md-4">
@@ -62,14 +62,10 @@
                 <input type="text" class="form-control" id="img" th:field="*{pictureURL}" placeholder="use a link please, e.g.: https://img.freepik.com/premium-photo/close-up-cat_1048944-1949595.jpg?w=740 ">
             </div>
             <div>
-                <!--omitted: name="isNeutered" -->
                 <input id="isNeutered" type="checkbox" th:field="*{isNeutered}">
                 <label for="isNeutered">Is neutered?</label>               
             </div>
           
-            <!-- testing-->
-            <div th:utext="${user.userName}">Username not available</div>
-
             <div class="col-md-2">
                 <button type="submit" class="btn btn-success">Register</button>
             </div>

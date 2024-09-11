@@ -70,27 +70,15 @@
             </tr>
        </table>
 
-
        <h4>Do you want to register your cat?</h4>
-       
-       <div>
+              <div>
             <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-                th:action="@{/th/pethostel/animal/addByUserName}" th:object="${user}" method="post">
-                <input type="hidden" th:object="${user}">
-                <button class="btn btn-danger mt-2 btn-login text-uppercase fw-bold" type="submit" name="user">
-                    Register a pet
-                </button>
-            </form>
-        </div>
-
-        <div>
-            <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-                th:action="@{/th/pethostel/animal/addByUserNameByString}" method="post">
+                th:action="@{/th/pethostel/animal/addByUserName}" method="post">
 
                 <input type="hidden" name="selectedUserNameString" th:value="${user.userName}">
 
                 <button class="btn btn-danger mt-2 btn-login text-uppercase fw-bold" type="submit" name="user">
-                    Register a pet (by string)
+                    Register a pet
                 </button>
             </form>
         </div>
