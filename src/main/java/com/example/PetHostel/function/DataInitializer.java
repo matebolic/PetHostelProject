@@ -27,28 +27,35 @@ public class DataInitializer {
     }
 
     public void saveTestEntities() {
-
         PetOwner petOwner_mb = new PetOwner("balma", "Matthieu", "Blaise", "1981-10-11", Currency.HUF, "balmate@g.hu", "pw");
         PetOwner petOwner_mtb = new PetOwner("barba", "Barbara", "Swenson", "1981-06-27", Currency.HUF, "trub@g.com", "pw2");
-        petOwnerRepository.save(petOwner_mb);
-        petOwnerRepository.save(petOwner_mtb);
 
-        Animal cirmir = new Animal.AnimalBuilder().addBasicInfo(petOwner_mb, "Cirmir").addDetailedInfo(1, Gender.MALE, true).addOptionalInfo("likes whiskas", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/1200px-Cat_August_2010-4.jpg").build();
-        animalRepository.save(cirmir);
-
-        for (int i = 0; i < 10; i++) {
-            if (i < 5) {
-                animalRepository.save(new Animal().randomDetailedInfo()).setPetOwner(petOwner_mb);
-            } else {
-                animalRepository.save(new Animal().randomDetailedInfo()).setPetOwner(petOwner_mtb);
-            }
-
+        if (petOwnerRepository.findAll().isEmpty()) {
+            petOwnerRepository.save(petOwner_mb);
+            petOwnerRepository.save(petOwner_mtb);
         }
 
-        Reservation reservation01 = new Reservation(petOwner_mb, "2024-01-22", "18:00", "2024-02-03", "08:00");
-        Reservation reservation02 = new Reservation(petOwner_mb, "2024-03-22", "14:00", "2024-04-07", "09:00");
-        reservationRepository.save(reservation01);
-        reservationRepository.save(reservation02);
+        if (animalRepository.findAll().isEmpty()) {
+            Animal cirmir = new Animal.AnimalBuilder().addBasicInfo(petOwner_mb, "Cirmir").addDetailedInfo(1, Gender.MALE, true).addOptionalInfo("likes whiskas", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/1200px-Cat_August_2010-4.jpg").build();
+            animalRepository.save(cirmir);
+
+            for (
+                    int i = 0;
+                    i < 10; i++) {
+                if (i < 5) {
+                    animalRepository.save(new Animal().randomDetailedInfo()).setPetOwner(petOwner_mb);
+                } else {
+                    animalRepository.save(new Animal().randomDetailedInfo()).setPetOwner(petOwner_mtb);
+                }
+            }
+        }
+
+        if (reservationRepository.findAll().isEmpty()) {
+                        Reservation reservation01 = new Reservation(petOwner_mb, "2024-01-22", "18:00", "2024-02-03", "08:00");
+            Reservation reservation02 = new Reservation(petOwner_mb, "2024-03-22", "14:00", "2024-04-07", "09:00");
+            reservationRepository.save(reservation01);
+            reservationRepository.save(reservation02);
+        }
     }
 
     public void savePetUtility() {
@@ -74,15 +81,17 @@ public class DataInitializer {
                 "You can naturally bring your food too your pet.";
 
 
-        PetUtility daycare = new PetUtility("daycare", descriptionDaycare, Currency.HUF, 3000);
-        PetUtility boarding = new PetUtility("boarding", descriptionBoarding, Currency.HUF, 5000);
-        PetUtility walk = new PetUtility("walk", descriptionWalk, Currency.HUF, 2000);
-        PetUtility food = new PetUtility("food", descriptionFood, Currency.HUF, 500);
+        if (petUtilityRepository.findAll().size() == 0) {
+            PetUtility daycare = new PetUtility("daycare", descriptionDaycare, Currency.HUF, 3000);
+            PetUtility boarding = new PetUtility("boarding", descriptionBoarding, Currency.HUF, 5000);
+            PetUtility walk = new PetUtility("walk", descriptionWalk, Currency.HUF, 2000);
+            PetUtility food = new PetUtility("food", descriptionFood, Currency.HUF, 500);
 
-        petUtilityRepository.save(boarding);
-        petUtilityRepository.save(daycare);
-        petUtilityRepository.save(walk);
-        petUtilityRepository.save(food);
+            petUtilityRepository.save(boarding);
+            petUtilityRepository.save(daycare);
+            petUtilityRepository.save(walk);
+            petUtilityRepository.save(food);
+        }
     }
 
 }
