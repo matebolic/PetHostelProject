@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>All the onwers - info</title>
+    <title th:text="${user.userName}">All the onwers - info</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
@@ -72,16 +72,13 @@
 
 
        <h4>Do you want to register your cat?</h4>
+       
        <div>
-            <a class="btn btn-danger mt-2 btn-login text-uppercase fw-bold" href="/th/pethostel/animal/register">Please click here!"</a>
-       </div>
-
-        <div>
             <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-                th:action="@{/th/pethostel/animal/register}" method="post" th:object="${user}">
+                th:action="@{/th/pethostel/animal/addByUserName}" th:object="${user}" method="post">
 
-                <button class="btn btn-danger mt-2 btn-login text-uppercase fw-bold" type="submit" name="user" th:object="${user}">
-                    Or try here, this is a button with a post method
+                <button class="btn btn-danger mt-2 btn-login text-uppercase fw-bold" type="submit" name="user">
+                    Register a pet
                 </button>
             </form>
         </div>

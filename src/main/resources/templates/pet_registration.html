@@ -29,7 +29,7 @@
         </div>
 
         <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-            th:action="@{/web/pethostel/pet/add}" method="post" th:object="${animal}">
+            th:action="@{/th/pethostel/animal/add}" method="post" th:object="${animal}">
             <div class="col-md-4">
                 <label for="petName" class="form-label">Petname</label>
                 <input type="text" class="form-control" id="petName" th:field="*{petName}"
@@ -48,7 +48,7 @@
                     <select class="form-select" id="genderSelector" name="genderStr" th:field="*{gender}">
                     <option value="" selected disabled>...</option>
                     <th:block th:each="gender: ${genders}">
-                        <option th:value="*{gender}" th:text="${gender.name}">male</option>
+                        <option th:value="${gender}" th:text="${gender.name}">male</option>
                     </th:block>
                 </select>
             </div>
@@ -61,13 +61,12 @@
                 <label for="img" class="form-label">Image</label>
                 <input type="text" class="form-control" id="img" th:field="*{pictureURL}" placeholder="use a link please, e.g.: https://img.freepik.com/premium-photo/close-up-cat_1048944-1949595.jpg?w=740 ">
             </div>
-
-            <!--
             <div>
-                <input id="isNeutered" type="checkbox" name="isNeutered">
+                <!--omitted: name="isNeutered" -->
+                <input id="isNeutered" type="checkbox" th:field="*{isNeutered}">
                 <label for="isNeutered">Is neutered?</label>               
             </div>
-            -->
+          
 
 
             <div class="col-md-2">

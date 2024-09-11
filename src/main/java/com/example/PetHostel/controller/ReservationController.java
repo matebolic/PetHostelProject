@@ -17,16 +17,11 @@ public class ReservationController {
     @Autowired
     ReservationService reservationService;
 
-    //-------------------------------------------------------------------------------//
-
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation reservation) {
         return reservationService.save(reservation);
     }
-
-    //-------------------------------------------------------------------------------//
-
 
     @GetMapping("/findAll")
     public List<Reservation> findAll() {
@@ -38,23 +33,15 @@ public class ReservationController {
         return reservationService.findById(id);
     }
 
-
-    //-------------------------------------------------------------------------------//
-
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation update(@RequestBody Reservation reservation) {
         return reservationService.save(reservation);
     }
 
-
-    //-------------------------------------------------------------------------------//
-
     @DeleteMapping("/deleteById/{id}")
     public void deleteById(@PathVariable Long id) {
         reservationService.deleteById(id);
     }
 
-
-    //-------------------------------------------------------------------------------//
 }

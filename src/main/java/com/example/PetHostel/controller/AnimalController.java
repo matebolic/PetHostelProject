@@ -18,13 +18,22 @@ public class AnimalController {
     @Autowired
     AnimalService animalService;
 
+    @GetMapping("/findByPetName/{petName}")
+    public Animal findByPetName(@PathVariable String petName) {
+        return animalService.findByPetName(petName);
+    }
+
+    /*
+    Methods should have checked  - It was all written at the beginning:
+    ------------------------------------------------------------
+    */
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Animal save(@RequestBody Animal animal) {
         return animalService.save(animal);
     }
 
-    //-------------------------------------------------------------------------------//
 
     @GetMapping("/findAll")
     public List<Animal> findAll() {
@@ -42,16 +51,6 @@ public class AnimalController {
         return animalService.findByPetNameIgnoreCase(petName);
     }
 
-//    @GetMapping("/findByOwnerId/{id}")
-//    public List<Animal> findByOwnerId(@PathVariable Long id) {
-//        return animalService.findByOwnerId(id);
-//    }
-
-//    @GetMapping("/findByPetOwnerId/{id}")
-//    public List<Animal> findByOwner_Id(@PathVariable Long id) {
-//        return animalService.findByPetOwner_Id(id);
-//    }
-
 
     @GetMapping("/findByOwnerFullName/{fullName}")
     public List<Animal> findByTheOwnerFullName(@PathVariable String fullName) {
@@ -62,12 +61,6 @@ public class AnimalController {
     public String getAvgAgeOfAnimal() {
         return animalService.getAvgAgeOfAnimal();
     }
-
-
-    //-------------------------------------------------------------------------------//
-
-
-    //-------------------------------------------------------------------------------//
 
 
 }

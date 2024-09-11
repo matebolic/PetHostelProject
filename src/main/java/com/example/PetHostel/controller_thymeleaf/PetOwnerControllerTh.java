@@ -26,6 +26,11 @@ public class PetOwnerControllerTh {
         return "owner_info";
     }
 
+    @GetMapping("/findAll")
+    public String checkAllUser(Model model) {
+        model.addAttribute("owners", petOwnerService.findAll());
+        return "owners_info";
+    }
 
     @GetMapping("/add")
     public String getForm(Model model) {
@@ -37,16 +42,9 @@ public class PetOwnerControllerTh {
 
     @PostMapping("/add")
     public String acceptForm(@ModelAttribute("user") PetOwner petOwner, @RequestParam String dateOfBirthString) {
-        System.out.println(dateOfBirthString);
         petOwner.setDateOfBirth(LocalDate.parse("1991-01-01"));
         petOwnerService.save(petOwner);
         return "owner_info";
-    }
-
-    @GetMapping("/all")
-    public String checkAllUser(Model model) {
-        model.addAttribute("owners", petOwnerService.findAll());
-        return "owners_info";
     }
 
 

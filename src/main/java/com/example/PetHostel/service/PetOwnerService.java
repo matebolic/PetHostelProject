@@ -22,16 +22,11 @@ public class PetOwnerService {
     @Autowired
     PetOwnerRepository petOwnerRepository;
 
-    //-------------------------------------------------------------------------------//
+
 
     public PetOwner save(PetOwner petOwner) {
-
-
         return petOwnerRepository.save(petOwner);
     }
-
-
-    //-------------------------------------------------------------------------------//
 
     public List<PetOwner> findAll() {
         return petOwnerRepository.findAll();
@@ -45,13 +40,10 @@ public class PetOwnerService {
         return petOwnerRepository.findByUserName(username);
     }
 
-    //-------------------------------------------------------------------------------//
-
     public PetOwner update(PetOwner petOwner) {
         return petOwnerRepository.save(petOwner);
     }
 
-    //-------------------------------------------------------------------------------//
 
     @Transactional
     public void deleteById(Long id) {

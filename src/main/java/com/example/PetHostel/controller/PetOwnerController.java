@@ -18,7 +18,10 @@ public class PetOwnerController {
     @Autowired
     PetOwnerService petOwnerService;
 
-    //-------------------------------------------------------------------------------//
+    /*
+    Methods should have checked  - It was all written at the beginning:
+    ------------------------------------------------------------
+    */
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
@@ -26,29 +29,21 @@ public class PetOwnerController {
         return petOwnerService.save(petOwner);
     }
 
-    //-------------------------------------------------------------------------------//
-
     @GetMapping("/findAll")
     public List<PetOwner> findAll() {
         return petOwnerService.findAll();
     }
-
 
     @GetMapping("/findByFullName/{fullName}")
     public List<PetOwner> findByFullName(@PathVariable String fullName) {
         return petOwnerService.findByFullName(fullName);
     }
 
-    //-------------------------------------------------------------------------------//
-
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public PetOwner update(@RequestBody PetOwner petOwner) {
         return petOwnerService.save(petOwner);
     }
-
-
-    //-------------------------------------------------------------------------------//
 
     @DeleteMapping("/deleteById/{id}")
     public void deleteById(@PathVariable Long id) {

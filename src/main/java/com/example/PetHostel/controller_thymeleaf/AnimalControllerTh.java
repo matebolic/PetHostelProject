@@ -24,29 +24,34 @@ public class AnimalControllerTh {
     @Autowired
     PetOwnerService petOwnerService;
 
-    @PostMapping("/register")
-    public String getFormByUser(@ModelAttribute("user") PetOwner petOwner, Model model) {
+    @GetMapping("/findByPetName/{petName}")
+    public String findByPetName(@PathVariable String petName, Model model) {
+        model.addAttribute("animal", animalService.findByPetName(petName));
+        return "pet_info";
+    }
+
+    @PostMapping("/addByUserName")
+    public String getForm(@ModelAttribute("user") PetOwner petOwner, Model model) {
         Animal animal = new Animal();
         model.addAttribute("animal", animal);
         model.addAttribute("genders", Gender.values());
-        model.addAttribute("user", petOwner);
         return "pet_registration";
     }
 
     @PostMapping("/add")
     public String acceptForm(@ModelAttribute("animal") Animal animal, @RequestParam("hiddenUserName") String userName) {
-        System.out.println("------------------------------------------" + userName);
-        animal.setPetOwner(petOwnerService.findByUserName(userName));
-        System.out.println(animal.getPetOwner().getUserName());
+        PetOwner petOwner = petOwnerService.findByUserName(userName);
+        animal.setPetOwner(petOwner);
         animalService.save(animal);
-        return "pet_info";
+        return "index.html";
     }
 
-    @PostMapping("/findByPetName/{petName}")
-    public String findByPetName(@PathVariable String petName, Model model) {
-        model.addAttribute("animal", animalService.findByPetName(petName));
-        return "pet_info";
+    @GetMapping("/findAll")
+    public String listAllAnimal(Model model) {
+        model.addAttribute("animals", animalService.findAll());
+        return "pets_info";
     }
+
 
 
 }

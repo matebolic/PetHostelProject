@@ -19,10 +19,6 @@ public class AnimalService {
     @Autowired
     AnimalRepository animalRepository;
 
-    public Animal save(Animal animal) {
-        return animalRepository.save(animal);
-    }
-
     public Animal findByPetName(String petName) {
         return animalRepository.findByPetName(petName);
     }
@@ -30,6 +26,18 @@ public class AnimalService {
     public List<Animal> findAll() {
         return animalRepository.findAll();
     }
+
+    public Animal save(Animal animal) {
+        if (animal.getIsNeutered() == null) {
+            animal.setIsNeutered(false);
+        }
+        return animalRepository.save(animal);
+    }
+
+       /*
+    Methods should have checked  - It was all written at the beginning:
+    ------------------------------------------------------------
+    */
 
     public Animal findById(Long id) {
         return animalRepository.findById(id).orElseThrow();
@@ -47,13 +55,13 @@ public class AnimalService {
     return animalRepository.findByPetOwner_Id(id);
 }*/
 
-public List<Animal> findByTheOwnerFullName(String fullName) {
-    return animalRepository.findByTheOwnerFullName(fullName);
-}
+    public List<Animal> findByTheOwnerFullName(String fullName) {
+        return animalRepository.findByTheOwnerFullName(fullName);
+    }
 
-public String getAvgAgeOfAnimal() {
-    return animalRepository.findAll().stream().map(animal -> animal.getAge()).mapToInt(a -> a).summaryStatistics().toString();
-}
+    public String getAvgAgeOfAnimal() {
+        return animalRepository.findAll().stream().map(animal -> animal.getAge()).mapToInt(a -> a).summaryStatistics().toString();
+    }
 
 
 }

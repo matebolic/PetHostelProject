@@ -15,43 +15,31 @@ public class PetServicesController {
     @Autowired
     PetServicesService petServicesService;
 
-    //-------------------------------------------------------------------------------//
-
     @PostMapping("/save")
     public PetServices save(@RequestBody PetServices petServices) {
         return petServicesService.save(petServices);
     }
-
-    //-------------------------------------------------------------------------------//
 
     @GetMapping("/findByReservation")
     public List<PetServices> findByReservation(@RequestBody Reservation reservation) {
         return petServicesService.findByReservation(reservation);
     }
 
-
     @GetMapping("/findAll")
     public List<PetServices> findAll() {
         return petServicesService.findAll();
     }
-
-
-    //-------------------------------------------------------------------------------//
 
     @PostMapping("/update")
     public PetServices update(@RequestBody PetServices petServices) {
         return petServicesService.save(petServices);
     }
 
-
-    //-------------------------------------------------------------------------------//
-
     @DeleteMapping("/deleteById/{id}")
     public void deleteById(@PathVariable Long id) {
         petServicesService.deleteById(id);
     }
 
-    //-------------------------------------------------------------------------------//
 
 
 }
