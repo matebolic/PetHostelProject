@@ -38,9 +38,19 @@ public class AnimalControllerTh {
         return "pet_registration";
     }
 
+    @PostMapping("/addByUserNameByString")
+    public String getFormByString(@RequestParam("selectedUserNameString") String selectedUserNameString, Model model) {
+        Animal animal = new Animal();
+        PetOwner petOwner = petOwnerService.findByUserName(selectedUserNameString);
+        model.addAttribute("animal", animal);
+        model.addAttribute("genders", Gender.values());
+        model.addAttribute("user", petOwner);
+        return "pet_registration";
+    }
+
     @PostMapping("/add")
-    public String acceptForm(@ModelAttribute("animal") Animal animal, @RequestParam("hiddenUserName") String userName) {
-        PetOwner petOwner = petOwnerService.findByUserName(userName);
+    public String acceptForm(@ModelAttribute("animal") Animal animal, @RequestParam("hiddenUserName") String hiddenUserName) {
+        PetOwner petOwner = petOwnerService.findByUserName(hiddenUserName);
         animal.setPetOwner(petOwner);
         animalService.save(animal);
         return "index.html";

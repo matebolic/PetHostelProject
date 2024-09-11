@@ -36,7 +36,7 @@
                     placeholder="e.g.: Caty">
 
                 <!-- the hidden username-->
-                <input type="hidden" name="hiddenUserName" th:value="${user.userName}">
+                <input type="text" name="hiddenUserName" th:value="${user.userName}"  aria-label="readonly input username" readonly th:placeholder="${user.userName}">
                 <!-- the hidden username-->
             </div>
             <div class="col-md-4">
@@ -67,7 +67,8 @@
                 <label for="isNeutered">Is neutered?</label>               
             </div>
           
-
+            <!-- testing-->
+            <div th:utext="${user.userName}">Username not available</div>
 
             <div class="col-md-2">
                 <button type="submit" class="btn btn-success">Register</button>
