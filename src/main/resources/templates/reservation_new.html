@@ -23,15 +23,7 @@
 </head>
 
 <body>
-    <!-- 
-        <form th:action="@{/submit}" method="post">
-            <div class="form-group">
-                <label for="daterange">Select the time of arrival and departure</label>
-                <input type="text" id="daterange" name="daterange" class="form-control"/>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-     -->
+   
 
     <div class="container-md">
         <div class="row px-1 mx-1 mt-1 justify-content-center">
@@ -39,29 +31,25 @@
         </div>
 
         <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-            th:action="@{/web/pethostel/pet/add}" method="post" th:object="${pet}">
-        <!-- 
-        <form th:action="@{/submit}" method="post">
-        -->
-
+            th:action="@{/th/pethostel/reservation/addByUserName}" method="post">
+       
             <div class="form-group">
                 <label for="daterange">Select the time of arrival and departure</label>
                 <input type="text" id="daterange" name="daterange" class="form-control"/>
             </div>
 
             <div class="">
-                <label for="isFoodTaken">Do you want us to feed you pets with our petfood?</label> 
+                <label for="isFoodTaken">Do you want us to feed your pets with our petfood?</label> 
                 <input id="isFoodTaken" type="checkbox" name="isFoodTaken">
             </div>
 
             <div>
                 <p>For which pets do you want to book?</p>
-                <th:block th:each="animal : ${myAnimals}">
-                    <label th:for="${animal.name}" th:text="${animal.name}">Cirmi</label>
-                    <input type="checkbox" id="${animal.name}" th:name="animals" th:value="${animal.name}">
-                </th:block>
-                
-                                      
+                <th:block th:each="animal : ${animals}">
+                    <label th:for="${'animal_' + animal.petName}" th:text="${animal.petName}">Cirmi</label>
+                    <input type="checkbox" th:id="${'animal_' + animal.petName}" th:name="selectedAnimals" th:value="${animal.petName}">
+                    <input type="hidden" name="selectedUserNameString" th:value="${user.userName}">
+                </th:block>                                     
             </div>
                
             <div class="col-md-2">

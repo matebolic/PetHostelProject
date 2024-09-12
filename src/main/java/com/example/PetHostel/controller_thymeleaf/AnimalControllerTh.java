@@ -31,7 +31,7 @@ public class AnimalControllerTh {
     }
 
     @PostMapping("/addByUserName")
-    public String getFormByString(@RequestParam("selectedUserNameString") String selectedUserNameString, Model model) {
+    public String getForm(@RequestParam("selectedUserNameString") String selectedUserNameString, Model model) {
         Animal animal = new Animal();
         PetOwner petOwner = petOwnerService.findByUserName(selectedUserNameString);
         model.addAttribute("animal", animal);

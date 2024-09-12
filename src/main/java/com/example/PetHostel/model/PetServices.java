@@ -1,6 +1,7 @@
 package com.example.PetHostel.model;
 
 import com.example.PetHostel.modelFromEnum.Currency;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class PetServices {
 
     private Integer numberOfServicesPerReservation;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
