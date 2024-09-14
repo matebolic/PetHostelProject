@@ -19,7 +19,7 @@ public class AnimalService {
     @Autowired
     AnimalRepository animalRepository;
 
-    public Animal findByPetName(String petName) {
+    public List<Animal> findByPetName(String petName) {
         return animalRepository.findByPetName(petName);
     }
 
@@ -34,14 +34,14 @@ public class AnimalService {
         return animalRepository.save(animal);
     }
 
+    public Animal findById(Long id) {
+        return animalRepository.findById(id).orElseThrow();
+    }
+
        /*
     Methods should have checked  - It was all written at the beginning:
     ------------------------------------------------------------
     */
-
-    public Animal findById(Long id) {
-        return animalRepository.findById(id).orElseThrow();
-    }
 
     public List<Animal> findByPetNameIgnoreCase(String petName) {
         return animalRepository.findByPetNameIgnoreCase(petName);

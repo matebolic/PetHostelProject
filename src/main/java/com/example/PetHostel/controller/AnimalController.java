@@ -20,7 +20,7 @@ public class AnimalController {
 
     @GetMapping("/findByPetName/{petName}")
     public Animal findByPetName(@PathVariable String petName) {
-        return animalService.findByPetName(petName);
+        return animalService.findByPetName(petName).getFirst();
     }
 
     /*

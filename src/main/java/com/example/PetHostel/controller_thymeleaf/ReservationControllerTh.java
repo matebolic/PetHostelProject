@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Controller
 @RequestMapping("/th/pethostel/reservation/")
 public class ReservationControllerTh {
@@ -37,10 +40,19 @@ public class ReservationControllerTh {
     }
 
     @PostMapping("/add")
-    public String acceptForm(@RequestParam("hiddenUserName") String hiddenUserName) {
-        //PetOwner petOwner = petOwnerService.findByUserName(hiddenUserName);
-        //animal.setPetOwner(petOwner);
-        //animalService.save(animal);
+    public String acceptForm(Model model,
+                             @RequestParam("hiddenUserName") String hiddenUserName,
+                             @RequestParam("isFoodTaken") String isFoodTakenString,
+                             @RequestParam("daterange") String daterange,
+                             @RequestParam("selectedAnimals") List<String> selectedAnimalList) {
+
+        String[] dates = daterange.split("-");
+        LocalDateTime arrivalTime = LocalDateTime.parse(dates[0]);
+        LocalDateTime departureTime = LocalDateTime.parse(dates[1]);
+        PetOwner petOwner = petOwnerService.findByUserName(hiddenUserName);
+        boolean isFoodTaken = isFoodTakenString.equals("on");   //by definition "on" is the value of the form
+
+        model.addAttribute("reservation", reservationService.processReservation(isFoodTaken,petOwner,selectedAnimalList, arrivalTime, departureTime));
         return "reservation_confirmation";
     }
 

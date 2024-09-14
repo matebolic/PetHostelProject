@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ import java.util.stream.Stream;
 @Setter
 @NoArgsConstructor
 @Entity
+@Accessors(chain = true)    //for fluent API usage
 public class Reservation {
 
     @Id
@@ -70,6 +72,12 @@ public class Reservation {
         this.finishingDateTime = LocalDateTime.of(this.finishingDate, this.finishingTime);
         this.duration = Duration.between(startingDateTime, finishingDateTime).toMinutes();
     }
+
+    public Reservation calculateDuration() {
+        this.setDuration(Duration.between(startingDateTime, finishingDateTime).toMinutes());
+        return this;
+    }
+
 
     public Reservation calculateTotalPriceByReservation() {
         Currency currencyToConvert = this.petOwner.getCurrency();
