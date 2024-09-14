@@ -31,7 +31,7 @@
         </div>
 
         <form class="row g-3 p-1 m-2 align-items-center justify-content-center" action="#"
-            th:action="@{/th/pethostel/reservation/addByUserName}" method="post">
+            th:action="@{/th/pethostel/reservation/add}" method="post">
        
             <div class="form-group">
                 <label for="daterange">Select the time of arrival and departure</label>
@@ -41,14 +41,14 @@
             <div class="">
                 <label for="isFoodTaken">Do you want us to feed your pets with our petfood?</label> 
                 <input id="isFoodTaken" type="checkbox" name="isFoodTaken">
+                <input type="hidden" name="selectedUserNameString" th:value="${user.userName}">
             </div>
 
             <div>
                 <p>For which pets do you want to book?</p>
                 <th:block th:each="animal : ${animals}">
                     <label th:for="${'animal_' + animal.petName}" th:text="${animal.petName}">Cirmi</label>
-                    <input type="checkbox" th:id="${'animal_' + animal.petName}" th:name="selectedAnimals" th:value="${animal.petName}">
-                    <input type="hidden" name="selectedUserNameString" th:value="${user.userName}">
+                    <input type="checkbox" th:id="${'animal_' + animal.petName}" th:name="selectedAnimals" th:value="${animal.id}" checked>
                 </th:block>                                     
             </div>
                
@@ -61,6 +61,8 @@
         </form>
     </div>
 
+    <p th:utext="${user}"></p>
+
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -70,6 +72,8 @@
 <!-- Bootstrap Date Range Picker JS -->
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.js"></script>
 
+
+
 <script type="text/javascript">
     $(function() {
         $('#daterange').daterangepicker({
@@ -77,7 +81,8 @@
             timePicker24Hour: true, // Use 24-hour format
             timePickerIncrement: 15, // Increment of minutes in time selection
             locale: {
-                format: 'YYYY-MM-DD HH:mm'
+                format: 'YYYY-MM-DD HH:mm',
+                separator: ' to '
             }
         });
     });

@@ -24,9 +24,15 @@ public class AnimalControllerTh {
     @Autowired
     PetOwnerService petOwnerService;
 
+    @GetMapping("/findById/{id}")
+    public String findById(@PathVariable Long id, Model model) {
+        model.addAttribute("animal", animalService.findById(id));
+        return "pet_info";
+    }
+
     @GetMapping("/findByPetName/{petName}")
     public String findByPetName(@PathVariable String petName, Model model) {
-        model.addAttribute("animal", animalService.findByPetName(petName));
+        model.addAttribute("animal", animalService.findByPetName(petName).getFirst());
         return "pet_info";
     }
 

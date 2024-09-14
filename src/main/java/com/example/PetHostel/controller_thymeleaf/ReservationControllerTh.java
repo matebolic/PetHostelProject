@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -41,18 +42,21 @@ public class ReservationControllerTh {
 
     @PostMapping("/add")
     public String acceptForm(Model model,
-                             @RequestParam("hiddenUserName") String hiddenUserName,
+                             @RequestParam("selectedUserNameString") String selectedUserNameString,
                              @RequestParam("isFoodTaken") String isFoodTakenString,
                              @RequestParam("daterange") String daterange,
-                             @RequestParam("selectedAnimals") List<String> selectedAnimalList) {
+                             @RequestParam("selectedAnimals") List<Long> selectedAnimalList) {
 
-        String[] dates = daterange.split("-");
-        LocalDateTime arrivalTime = LocalDateTime.parse(dates[0]);
-        LocalDateTime departureTime = LocalDateTime.parse(dates[1]);
-        PetOwner petOwner = petOwnerService.findByUserName(hiddenUserName);
+        System.out.println(daterange);
+
+        String[] dates = daterange.split(" to ");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime arrivalTime = LocalDateTime.parse(dates[0], dtf);
+        LocalDateTime departureTime = LocalDateTime.parse(dates[1], dtf);
+        PetOwner petOwner = petOwnerService.findByUserName(selectedUserNameString);
         boolean isFoodTaken = isFoodTakenString.equals("on");   //by definition "on" is the value of the form
 
-        model.addAttribute("reservation", reservationService.processReservation(isFoodTaken,petOwner,selectedAnimalList, arrivalTime, departureTime));
+        model.addAttribute("reservation", reservationService.processReservation(isFoodTaken, petOwner, selectedAnimalList, arrivalTime, departureTime));
         return "reservation_confirmation";
     }
 

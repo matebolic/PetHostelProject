@@ -43,9 +43,15 @@ public class PetServices {
     public PetServices(PetUtility petUtility) {
         this.serviceName = petUtility.getUtilityName();
         this.description = petUtility.getDescription();
-        this.price = petUtility.getPrice();
         this.currency = petUtility.getCurrency();
+        this.price = petUtility.getPrice();
     }
 
-
+    public PetServices(PetUtility petUtility, Integer numberOfServicesPerReservation) {
+        this.serviceName = petUtility.getUtilityName();
+        this.description = petUtility.getDescription();
+        this.currency = petUtility.getCurrency();
+        this.price = petUtility.getPrice();
+        this.numberOfServicesPerReservation = numberOfServicesPerReservation;
+    }
 }

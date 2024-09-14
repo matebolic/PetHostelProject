@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -28,6 +29,9 @@ public class Animal {
     @ManyToOne
     @JoinColumn(name = "pet_owner_id")
     private PetOwner petOwner;
+
+    @ManyToMany(mappedBy = "animalsPerReservationsList")
+    private List<Reservation> reservations = new ArrayList<>();
 
     @Column(nullable = false)
     private String petName;

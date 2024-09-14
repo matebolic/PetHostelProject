@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PetUtilityRepository extends JpaRepository<PetUtility, Long> {
 
+    PetUtility findByUtilityName(String utilityName);
+
 
 }

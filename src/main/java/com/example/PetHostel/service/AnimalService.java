@@ -38,6 +38,7 @@ public class AnimalService {
         return animalRepository.findById(id).orElseThrow();
     }
 
+
        /*
     Methods should have checked  - It was all written at the beginning:
     ------------------------------------------------------------
@@ -46,14 +47,6 @@ public class AnimalService {
     public List<Animal> findByPetNameIgnoreCase(String petName) {
         return animalRepository.findByPetNameIgnoreCase(petName);
     }
-
-//    public List<Animal> findByOwnerId(Long id) {
-//        return animalRepository.findByOwnerId(id);
-//}
-
-/*public List<Animal> findByPetOwner_Id(Long id) {
-    return animalRepository.findByPetOwner_Id(id);
-}*/
 
     public List<Animal> findByTheOwnerFullName(String fullName) {
         return animalRepository.findByTheOwnerFullName(fullName);
