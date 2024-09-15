@@ -43,7 +43,7 @@ public class ReservationControllerTh {
     @PostMapping("/add")
     public String acceptForm(Model model,
                              @RequestParam("selectedUserNameString") String selectedUserNameString,
-                             @RequestParam("isFoodTaken") String isFoodTakenString,
+                             @RequestParam(name="isFoodTaken", defaultValue = "off") String isFoodTakenString,
                              @RequestParam("daterange") String daterange,
                              @RequestParam("selectedAnimals") List<Long> selectedAnimalList) {
 

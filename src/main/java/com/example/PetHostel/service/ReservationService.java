@@ -45,11 +45,11 @@ public class ReservationService {
             throw new MissingRequiredPropertiesException();
         }
 
-        if (isFoodTaken) {
-            reservation.getServices().add(new PetServices(petUtilityService.findByUtilityName("food"), 1));
-        }
-
         int[] numberOfServicesFromDuration = reservation.getNumberOfServicesFromDuration();
+
+        if (isFoodTaken) {
+            reservation.getServices().add(new PetServices(petUtilityService.findByUtilityName("food"), numberOfServicesFromDuration[0]));
+        }
 
         if (numberOfServicesFromDuration[0] > 0) {
             reservation.getServices().add(new PetServices(petUtilityService.findByUtilityName("boarding"), numberOfServicesFromDuration[0]));
@@ -60,6 +60,7 @@ public class ReservationService {
         }
 
         reservation.calculateTotalPriceByReservation();
+        reservation.getPetOwner().pay(reservation.getPriceOfReservation()).calculateMembership();
         reservationRepository.save(reservation);
 
         return reservation;

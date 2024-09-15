@@ -84,6 +84,11 @@ public class PetOwner {
         this.currency = currency;
     }
 
+    public PetOwner pay(int price) {
+        this.balance -= price;
+        return this;
+    }
+
     public PetOwner calculateMembership() {
         int serialOfActualMembership = this.membership.ordinal();
         while (serialOfActualMembership < Membership.values().length - 1) {
