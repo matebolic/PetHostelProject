@@ -43,7 +43,7 @@ public class ReservationControllerTh {
     @PostMapping("/add")
     public String acceptForm(Model model,
                              @RequestParam("selectedUserNameString") String selectedUserNameString,
-                             @RequestParam(name="isFoodTaken", defaultValue = "off") String isFoodTakenString,
+                             @RequestParam("isFoodTaken") String isFoodTakenString,
                              @RequestParam("daterange") String daterange,
                              @RequestParam("selectedAnimals") List<Long> selectedAnimalList) {
 
@@ -54,7 +54,7 @@ public class ReservationControllerTh {
         LocalDateTime arrivalTime = LocalDateTime.parse(dates[0], dtf);
         LocalDateTime departureTime = LocalDateTime.parse(dates[1], dtf);
         PetOwner petOwner = petOwnerService.findByUserName(selectedUserNameString);
-        boolean isFoodTaken = isFoodTakenString.equals("on");   //by definition "on" is the value of the form
+        boolean isFoodTaken = isFoodTakenString.equals("true");   //by definition "on" is the value of the form
 
         model.addAttribute("reservation", reservationService.processReservation(isFoodTaken, petOwner, selectedAnimalList, arrivalTime, departureTime));
         return "reservation_confirmation";
